@@ -1,0 +1,84 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26606.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "HBD.EntityFramework.StShare", "HBD.EntityFramework.Share\HBD.EntityFramework.StShare.shproj", "{97C10B82-5066-4ADC-9FD1-8542CFDCCC89}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HBD.EntityFramework.4.6", "HBD.EntityFramework.4.6\HBD.EntityFramework.4.6.csproj", "{65693DE0-E9BD-412F-B2E2-FDC0AF374A6C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HBD.EntityFramework.St2.0", "HBD.EntityFramework.St2.0\HBD.EntityFramework.St2.0.csproj", "{E7A0E040-ED77-435A-8284-25CD91FC37DB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2.Compilation", "2.Compilation", "{C41CBDFD-63E0-40D2-9610-B689BC75CD9E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HBD.EntityFramework.St1.6", "HBD.EntityFramework.St1.6\HBD.EntityFramework.St1.6.csproj", "{4F5EF1B6-4C33-4024-97AF-3DB127241207}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HBD.EntityFramework.4.7", "HBD.EntityFramework.4.7\HBD.EntityFramework.4.7.csproj", "{5E12F7D7-AE36-41F2-9402-E0E3A2DA5C59}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1. Shares", "1. Shares", "{5455140B-9DD9-4E79-93DA-5ABD6555CF63}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "HBD.EntityFramework.4x", "HBD.EntityFramework.4x\HBD.EntityFramework.4x.shproj", "{2AABBDF1-697B-4A24-B309-CA834CB33F5E}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "HBD.EntityFramework.GlobalShare", "HBD.EntityFramework.GlobalShare\HBD.EntityFramework.GlobalShare.shproj", "{030BC2C3-F26F-4F0C-86F4-3C178F0BB43B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3. Tests", "3. Tests", "{40F7CF7D-9AF2-4C0D-908F-4B680FEBDA4E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HBD.EntityFramework.4x.Tests", "HBD.EntityFramework.4x.Tests\HBD.EntityFramework.4x.Tests.csproj", "{47FDAB0E-ADA6-4190-BA50-AD13CE9869ED}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HBD.Framework.St.Tests", "HBD.Framework.St.Tests\HBD.Framework.St.Tests.csproj", "{F4FA2F76-3F54-4922-B0F5-58FB032400D6}"
+EndProject
+Global
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		HBD.EntityFramework.GlobalShare\HBD.EntityFramework.GlobalShare.projitems*{030bc2c3-f26f-4f0c-86f4-3c178f0bb43b}*SharedItemsImports = 13
+		HBD.EntityFramework.4x\HBD.EntityFramework.4x.projitems*{2aabbdf1-697b-4a24-b309-ca834cb33f5e}*SharedItemsImports = 13
+		HBD.EntityFramework.4x\HBD.EntityFramework.4x.projitems*{5e12f7d7-ae36-41f2-9402-e0e3a2da5c59}*SharedItemsImports = 4
+		HBD.EntityFramework.GlobalShare\HBD.EntityFramework.GlobalShare.projitems*{5e12f7d7-ae36-41f2-9402-e0e3a2da5c59}*SharedItemsImports = 4
+		HBD.EntityFramework.4x\HBD.EntityFramework.4x.projitems*{65693de0-e9bd-412f-b2e2-fdc0af374a6c}*SharedItemsImports = 4
+		HBD.EntityFramework.GlobalShare\HBD.EntityFramework.GlobalShare.projitems*{65693de0-e9bd-412f-b2e2-fdc0af374a6c}*SharedItemsImports = 4
+		HBD.EntityFramework.Share\HBD.EntityFramework.Share.projitems*{97c10b82-5066-4adc-9fd1-8542cfdccc89}*SharedItemsImports = 13
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{65693DE0-E9BD-412F-B2E2-FDC0AF374A6C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{65693DE0-E9BD-412F-B2E2-FDC0AF374A6C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{65693DE0-E9BD-412F-B2E2-FDC0AF374A6C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{65693DE0-E9BD-412F-B2E2-FDC0AF374A6C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E7A0E040-ED77-435A-8284-25CD91FC37DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E7A0E040-ED77-435A-8284-25CD91FC37DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E7A0E040-ED77-435A-8284-25CD91FC37DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E7A0E040-ED77-435A-8284-25CD91FC37DB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4F5EF1B6-4C33-4024-97AF-3DB127241207}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4F5EF1B6-4C33-4024-97AF-3DB127241207}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4F5EF1B6-4C33-4024-97AF-3DB127241207}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4F5EF1B6-4C33-4024-97AF-3DB127241207}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5E12F7D7-AE36-41F2-9402-E0E3A2DA5C59}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5E12F7D7-AE36-41F2-9402-E0E3A2DA5C59}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5E12F7D7-AE36-41F2-9402-E0E3A2DA5C59}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5E12F7D7-AE36-41F2-9402-E0E3A2DA5C59}.Release|Any CPU.Build.0 = Release|Any CPU
+		{47FDAB0E-ADA6-4190-BA50-AD13CE9869ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{47FDAB0E-ADA6-4190-BA50-AD13CE9869ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{47FDAB0E-ADA6-4190-BA50-AD13CE9869ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{47FDAB0E-ADA6-4190-BA50-AD13CE9869ED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F4FA2F76-3F54-4922-B0F5-58FB032400D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F4FA2F76-3F54-4922-B0F5-58FB032400D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F4FA2F76-3F54-4922-B0F5-58FB032400D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F4FA2F76-3F54-4922-B0F5-58FB032400D6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{97C10B82-5066-4ADC-9FD1-8542CFDCCC89} = {5455140B-9DD9-4E79-93DA-5ABD6555CF63}
+		{65693DE0-E9BD-412F-B2E2-FDC0AF374A6C} = {C41CBDFD-63E0-40D2-9610-B689BC75CD9E}
+		{E7A0E040-ED77-435A-8284-25CD91FC37DB} = {C41CBDFD-63E0-40D2-9610-B689BC75CD9E}
+		{4F5EF1B6-4C33-4024-97AF-3DB127241207} = {C41CBDFD-63E0-40D2-9610-B689BC75CD9E}
+		{5E12F7D7-AE36-41F2-9402-E0E3A2DA5C59} = {C41CBDFD-63E0-40D2-9610-B689BC75CD9E}
+		{2AABBDF1-697B-4A24-B309-CA834CB33F5E} = {5455140B-9DD9-4E79-93DA-5ABD6555CF63}
+		{030BC2C3-F26F-4F0C-86F4-3C178F0BB43B} = {5455140B-9DD9-4E79-93DA-5ABD6555CF63}
+		{47FDAB0E-ADA6-4190-BA50-AD13CE9869ED} = {40F7CF7D-9AF2-4C0D-908F-4B680FEBDA4E}
+		{F4FA2F76-3F54-4922-B0F5-58FB032400D6} = {40F7CF7D-9AF2-4C0D-908F-4B680FEBDA4E}
+	EndGlobalSection
+EndGlobal

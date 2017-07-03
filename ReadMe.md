@@ -1,21 +1,20 @@
-[![Build status](https://ci.appveyor.com/api/projects/status/m5s49xip2u3u6hxm)](https://ci.appveyor.com/project/baoduy/hbd-framework)
-[![License](https://img.shields.io/github/license/mashape/apistatus.svg)](https://opensource.org/licenses/MIT)
-[![NuGet](https://img.shields.io/nuget/v/HBD.Framework.svg?maxAge=2592000)](https://www.nuget.org/packages/HBD.Framework/)
+#Introduction 
+TODO: Give a short introduction of your project. Let this section explain the objectives or the motivation behind this project. 
 
-##### Nuget Package:
->PM> *Install-Package HBD.Framework*
+#Getting Started
+TODO: Guide users through getting your code up and running on their own system. In this section you can talk about:
+1.	Installation process
+2.	Software dependencies
+3.	Latest releases
+4.	API references
 
-# HBD.Framework
+#Build and Test
+TODO: Describe and show how to build your code and run the tests. 
 
-   The helpful library for .Net developers which support:
-      - Caching
-      - CSV Adapter that allows interacting with CSV files.
-      - SQL Adapter that allows interacting with SQL servers.
-      - OleDb Adapter that allows interacting with Data files.
-      - The common extension methods that will help developers to save time when wringing the code.
+#Contribute
+TODO: Explain how other users and developers can contribute to make your code better. 
 
-This framework is using for all HBD libraries that had been developing by Duy Hoang.
-More details in [here](https://github.com/baoduy?tab=repositories).
-
-## The principle topics in here.
-- https://drunkcoding.net/?s=Mef
+If you want to learn more about creating good readme files then refer the following [guidelines](https://www.visualstudio.com/en-us/docs/git/create-a-readme). You can also seek inspiration from the below readme files:
+- [ASP.NET Core](https://github.com/aspnet/Home)
+- [Visual Studio Code](https://github.com/Microsoft/vscode)
+- [Chakra Core](https://github.com/Microsoft/ChakraCore)
