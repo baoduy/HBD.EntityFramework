@@ -10,19 +10,47 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)CommonExtensions.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Core\EntityBase.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Core\IEntity.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Core\IPagable.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Aggregates\Aggregate.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\IDbUpdating.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\IDto.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Aggregates\IAggregate.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DbContexts\DbEntities\DbEntity.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DbContexts\DbEntities\IDbEntity.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DbContexts\BasicRepositories\DbBasicRepository.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DbContexts\BasicRepositories\DbBasicRepositoryFactory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DbContexts\DbRepositories\DbEntityUpdating.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DbContexts\Interfaces\IDbBasicRepository.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DbContexts\Interfaces\IDbBasicRepositoryFactory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DomainEvents\DomainEventsDispatcher.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DomainEvents\DtbDomainEvent.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DomainEvents\EventHandler.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DomainEvents\IDomainEvent.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DomainEvents\IEventHandler.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Entity.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\IEntity.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DbContexts\DbEntities\IPagable.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Core\IValueObject.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Core\Pagable.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DbContexts\DbEntities\Pagable.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Core\Value.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DynamicOrderExtention.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Exceptions\EntityNotFoundException.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Exceptions\InvaidKeysException.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)OrderDirection.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Repositories\EntityRepository.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Repositories\EntityRepositoryFactory.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Repositories\IRepository.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Repositories\IRepositoryFactory.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Repositories\Repository.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Repositories\RepositoryFactory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DbContexts\Interfaces\IDbRepository.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DbContexts\Interfaces\IDbRepositoryFactory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DbContexts\DbRepositories\DbRepository.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DbContexts\DbRepositories\DbRepositoryFactory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)RegexValidationExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\ActionResult.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\IDataService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\DataService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\IService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Validator.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="$(MSBuildThisFileDirectory)Aggregates\" />
+    <Folder Include="$(MSBuildThisFileDirectory)DbContexts\Interfaces\" />
+    <Folder Include="$(MSBuildThisFileDirectory)DbContexts\Validations\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Logging\" />
   </ItemGroup>
 </Project>

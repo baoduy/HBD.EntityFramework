@@ -1,0 +1,17 @@
+﻿using System.Collections.Generic;
+using HBD.EntityFramework.DbContexts.DbEntities;
+using System;
+
+namespace HBD.EntityFramework.Sample.ContactManagement
+{
+    public interface IContactService:IDisposable
+    {
+        IReadOnlyCollection<Contact> All();
+        Contact CreateNew(string firstName, string lastName);
+        Contact AddOrUpdate(Contact entity);
+        bool Delete(Contact entity);
+        Contact GetById(int key);
+        IPagable<Contact> GetPage(int pageIndex, int pageSize);
+        int CountAll();
+    }
+}

@@ -4,12 +4,12 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace HBD.Framework.St.Tests.Core
 {
     [TestClass]
-    public class ValueTests
+    public class ValuesTests
     {
         [TestMethod]
         public void Tow_ValueObject_Have_TheSameValue_ShouldBeEquals()
         {
-            var v1 = new Val(1,"A");
+            var v1 = new Val(1, "A");
             var v2 = new Val(1, "A");
 
             Assert.AreEqual(v1, v2);

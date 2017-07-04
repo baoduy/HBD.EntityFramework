@@ -2,16 +2,18 @@
 
 using System.Linq;
 using System.Threading.Tasks;
-using HBD.EntityFramework.Core;
 using HBD.Framework.Core;
+using HBD.EntityFramework.DbContexts.DbEntities;
 
 #if NETSTANDARD2_0 || NETSTANDARD1_6
+
 using Microsoft.EntityFrameworkCore;
+
 #else
 using System.Data.Entity;
 #endif
 
-#endregion
+#endregion using
 
 namespace HBD.EntityFramework
 {

@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <AssemblyName>HBD.EntityFramework.St20Sample</AssemblyName>
+    <RootNamespace>HBD.EntityFramework.St20Sample</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="6.1.1" />
+    <PackageReference Include="Microsoft.Composition" Version="1.0.31" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.0.0-preview2-final" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="2.0.0-preview2-final" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\HBD.EntityFramework.St2.0\HBD.EntityFramework.St2.0.csproj" />
+  </ItemGroup>
+
+  <Import Project="..\HBD.EntityFramework.SampleShare\HBD.EntityFramework.SampleShare.projitems" Label="Shared" />
+
+  <Import Project="..\HBD.EntityFramework.SampleStShare\HBD.EntityFramework.SampleStShare.projitems" Label="Shared" />
+
+</Project>

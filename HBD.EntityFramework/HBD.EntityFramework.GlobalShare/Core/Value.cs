@@ -1,10 +1,12 @@
-﻿using System;
+﻿using HBD.Framework;
+using System;
+using System.Linq;
 
 namespace HBD.EntityFramework.GlobalShare.Core
 {
     /// <summary>
-    /// The Value is representive of the ValueObjec in domain-driven pattern.
-    /// This object should be designed as Immtable object.
+    /// The Value is representative of the ValueObjec in domain-driven pattern.
+    /// This object should be designed as Immutable object.
     /// </summary>
     public abstract class Value<TValue> : IValueObject, IEquatable<TValue> where TValue : IValueObject
     {
@@ -12,16 +14,28 @@ namespace HBD.EntityFramework.GlobalShare.Core
         {
             if (obj == null) return false;
 
-            if (obj is TValue)
-                return Equals((TValue)obj);
+            if (obj is TValue b)
+                return Equals(b);
+
             return false;
         }
 
-        public override int GetHashCode() => this.GetType().FullName.GetHashCode() ^ this.GetValuesHashCode();
+        public override int GetHashCode() => this.GetType().FullName.GetHashCode() * 397 ^ this.GetValuesHashCode();
 
         protected virtual int GetValuesHashCode()
         {
-            return 0;
+            int result = 0;
+
+            foreach (var item in this.GetType().GetProperties().Where(a => a.CanRead))
+            {
+                var v = item.GetValue(this);
+
+                if (v is int i)
+                    result = result * 397 ^ i;
+                else result = result * 397 ^ v.GetHashCode();
+            }
+
+            return result;
         }
 
         public abstract bool Equals(TValue other);

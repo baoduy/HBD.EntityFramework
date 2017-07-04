@@ -8,4 +8,10 @@
   <PropertyGroup Label="Configuration">
     <Import_RootNamespace>HBD.EntityFramework</Import_RootNamespace>
   </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)DbContexts\DbEntities\EntityMappingConfiguration.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DbContexts\DbEntities\IEntityMappingConfiguration.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DbContexts\EntityDbContext.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)EntityExtensions.cs" />
+  </ItemGroup>
 </Project>

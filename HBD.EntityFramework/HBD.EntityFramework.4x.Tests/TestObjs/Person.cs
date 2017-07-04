@@ -1,10 +1,10 @@
-﻿using HBD.EntityFramework.Core;
+﻿using HBD.EntityFramework.DbContexts.DbEntities;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace HBD.Framework.St.Tests.TestObjs
 {
-    public class Person : Entity<int>
+    public class Person : DbEntity
     {
         [MaxLength(255)]
         [Required]
@@ -12,6 +12,9 @@ namespace HBD.Framework.St.Tests.TestObjs
 
         [MaxLength(255)]
         public string LastName { get; set; }
+
+        [EmailAddress]
+        public string Email { get; set; }
 
         [NotMapped]
         public string FullName => $"{FirstName} {LastName}";

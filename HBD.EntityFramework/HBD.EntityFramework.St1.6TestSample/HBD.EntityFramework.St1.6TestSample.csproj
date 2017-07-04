@@ -1,0 +1,32 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp1.1</TargetFramework>
+
+    <IsPackable>false</IsPackable>
+
+    <AssemblyName>HBD.EntityFramework.St16TestSample</AssemblyName>
+
+    <RootNamespace>HBD.EntityFramework.St16TestSample</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="6.1.1" />
+    <PackageReference Include="FluentAssertions" Version="4.19.2" />
+    <PackageReference Include="HBD.Mef" Version="2.0.0-preview1" />
+    <PackageReference Include="Microsoft.Composition" Version="1.0.31" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="1.1.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="1.1.2" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.3.0-preview-20170427-09" />
+    <PackageReference Include="MSTest.TestAdapter" Version="1.2.0-beta" />
+    <PackageReference Include="MSTest.TestFramework" Version="1.2.0-beta" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\HBD.EntityFramework.St1.6Sample\HBD.EntityFramework.St1.6Sample.csproj" />
+    <ProjectReference Include="..\HBD.EntityFramework.St1.6\HBD.EntityFramework.St1.6.csproj" />
+  </ItemGroup>
+
+  <Import Project="..\HBD.EntityFramework.SampleTestsShared\HBD.EntityFramework.SampleTestsShared.projitems" Label="Shared" />
+
+</Project>

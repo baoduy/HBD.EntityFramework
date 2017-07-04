@@ -1,12 +1,12 @@
 ﻿#region using
 
+using HBD.Framework.Core;
 using System;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
-using HBD.Framework.Core;
 
-#endregion
+#endregion using
 
 namespace HBD.EntityFramework
 {
@@ -63,9 +63,9 @@ namespace HBD.EntityFramework
                               && method.GetGenericArguments().Length == 2
                               && method.GetParameters().Length == 2)
                 .MakeGenericMethod(typeof(T), type)
-                .Invoke(null, new object[] {source, lambda});
+                .Invoke(null, new object[] { source, lambda });
 
-            return (IOrderedQueryable<T>) result;
+            return (IOrderedQueryable<T>)result;
         }
     }
 }

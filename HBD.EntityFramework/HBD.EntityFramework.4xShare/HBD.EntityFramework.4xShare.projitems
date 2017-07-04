@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>2ff4a926-2641-400f-b673-6ca84bb66d0a</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>HBD.EntityFramework.Sample</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)DbContexts\Mappers\AddressMapper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DbContexts\Mappers\EmailMapper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DbContexts\Mappers\PersonMapper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DbContexts\Mappers\PhoneNoMapper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DbContexts\SampleDbContext.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DbContexts\SampleRepositoryFactory.cs" />
+  </ItemGroup>
+</Project>

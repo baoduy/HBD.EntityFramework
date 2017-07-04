@@ -11,7 +11,9 @@ namespace HBD.Framework.St.Tests.TestObjs
         public TestDbContext(string connectionstring) : base(connectionstring)
         { }
 
-        public TestDbContext() : base() { }
+        public TestDbContext() : base()
+        {
+        }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

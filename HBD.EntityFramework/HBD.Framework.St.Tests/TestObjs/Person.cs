@@ -1,10 +1,10 @@
-﻿using HBD.EntityFramework.Core;
+﻿using HBD.EntityFramework.DbContexts.DbEntities;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace HBD.Framework.St.Tests.TestObjs
 {
-    public class Person : Entity<int>
+    public class Person : DbEntity
     {
         [MaxLength(255)]
         [Required]
