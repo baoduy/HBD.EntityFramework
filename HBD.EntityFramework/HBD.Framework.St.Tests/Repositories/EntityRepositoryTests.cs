@@ -6,6 +6,7 @@ using Moq;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace HBD.Framework.St.Tests.Repositories
 {
@@ -182,12 +183,15 @@ namespace HBD.Framework.St.Tests.Repositories
         public void Concurrency_UpdateCheck()
         {
             var options = new DbContextOptionsBuilder<TestDbContext>()
+                //.UseInMemoryDatabase("Data Source=SampleDb.db")
                 .UseSqlServer("Data Source=WIN-HFIQC0VT0PC\\SQLEXPRESS;Initial Catalog=Test;Integrated Security=True")
                 //.UseInMemoryDatabase(TestDbName)
                 .Options;
 
             var factory1 = new TestFactory(new TestDbContext(options), true);
             var factory2 = new TestFactory(new TestDbContext(options), true);
+
+            factory1.EnsureDbCreated();
 
             var p1 = factory1.For<Person>();
             var p2 = factory2.For<Person>();

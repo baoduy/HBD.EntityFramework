@@ -51,6 +51,5 @@
     <Folder Include="$(MSBuildThisFileDirectory)Aggregates\" />
     <Folder Include="$(MSBuildThisFileDirectory)DbContexts\Interfaces\" />
     <Folder Include="$(MSBuildThisFileDirectory)DbContexts\Validations\" />
-    <Folder Include="$(MSBuildThisFileDirectory)Logging\" />
   </ItemGroup>
 </Project>

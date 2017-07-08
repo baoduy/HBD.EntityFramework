@@ -7,6 +7,7 @@ using System.Reflection;
 
 #if NETSTANDARD2_0 || NETSTANDARD1_6 || NETCOREAPP1_1 || NETCOREAPP2_0
 using System.Composition.Hosting;
+using HBD.Mef.Hosting;
 #else
 using System.ComponentModel.Composition.Hosting;
 #endif
@@ -43,11 +44,12 @@ namespace HBD.EntityFramework.TestSample
         protected override ILogger CreateLogger() => new Log4NetLogger();
 
 #if NETSTANDARD2_0 || NETSTANDARD1_6 || NETCOREAPP1_1 || NETCOREAPP2_0
-        protected override ContainerConfiguration CreateContainerConfiguration()
+        protected override ExtendedContainerConfiguration CreateContainerConfiguration()
         {
             return base.CreateContainerConfiguration()
                 .WithAssembly(typeof(SampleDbContext).GetTypeInfo().Assembly)
-                .WithAssembly(typeof(SampleBootStrapper).GetTypeInfo().Assembly);
+                .WithAssembly(typeof(SampleBootStrapper).GetTypeInfo().Assembly)
+                as ExtendedContainerConfiguration;
         }
 #else
         protected override void ConfigureAggregateCatalog()

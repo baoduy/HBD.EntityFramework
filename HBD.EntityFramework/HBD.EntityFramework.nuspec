@@ -45,6 +45,7 @@
       </group>
       <group targetFramework="NETStandard2.0">
         <dependency id="NETStandard.Library" version="2.0.0-preview1-25301-01" />
+        <dependency id="Microsoft.CSharp" version="4.3.0" />
         <dependency id="HBD.Framework" version="2.0.0-preview2" />
         <dependency id="Microsoft.EntityFrameworkCore" version="2.0.0-preview2-final"/>
       </group>
@@ -53,8 +54,8 @@
     <tags>EntityFramework DDD DomainDrivenDesign Repository Factory</tags>
   </metadata>
   <files>
-    <file src="HBD.EntityFramework.4.5\bin\Release\HBD.EntityFramework*" target="lib\net45" exclude="**\*.pdb"/>
-    <file src="HBD.EntityFramework.4.6\bin\Release\HBD.EntityFramework*" target="lib\net46" exclude="**\*.pdb"/>
+    <file src="HBD.EntityFramework.4.5\bin\Release\HBD.EntityFramework*" target="lib\net452" exclude="**\*.pdb"/>
+    <file src="HBD.EntityFramework.4.6\bin\Release\HBD.EntityFramework*" target="lib\net462" exclude="**\*.pdb"/>
     <file src="HBD.EntityFramework.4.7\bin\Release\HBD.EntityFramework*" target="lib\net47" exclude="**\*.pdb"/>
     <file src="HBD.EntityFramework.St1.6\bin\Release\netstandard1.6\HBD.EntityFramework*" target="lib\netstandard1.6" exclude="**\*.pdb"/>
     <file src="HBD.EntityFramework.St2.0\bin\Release\netstandard2.0\HBD.EntityFramework*" target="lib\netstandard2.0" exclude="**\*.pdb"/>

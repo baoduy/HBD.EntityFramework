@@ -49,10 +49,10 @@
       <HintPath>..\packages\EntityFramework.6.2.0-beta1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="HBD.Framework, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\HBD.Framework.2.0.0-preview2\lib\net47\HBD.Framework.dll</HintPath>
+      <HintPath>..\packages\HBD.Framework.2.0.0-preview3\lib\net452\HBD.Framework.dll</HintPath>
     </Reference>
     <Reference Include="HBD.Mef, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\HBD.Mef.2.0.0-preview1\lib\net47\HBD.Mef.dll</HintPath>
+      <HintPath>..\packages\HBD.Mef.2.0.0-preview2\lib\net47\HBD.Mef.dll</HintPath>
     </Reference>
     <Reference Include="HBD.Mef.Logging, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\HBD.Mef.Logging.2.0.0-preview2\lib\net47\HBD.Mef.Logging.dll</HintPath>

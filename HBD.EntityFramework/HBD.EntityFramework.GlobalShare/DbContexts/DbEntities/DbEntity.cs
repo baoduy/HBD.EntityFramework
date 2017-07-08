@@ -11,6 +11,11 @@ namespace HBD.EntityFramework.DbContexts.DbEntities
 {
     public abstract class DbEntity<TKey> : IDbEntity<TKey, string>, IValidatableObject
     {
+        protected DbEntity()
+        {
+            CreatedTime = DateTime.Now;
+        }
+
         public virtual string CreatedBy { get; set; }
         public virtual DateTime CreatedTime { get; set; }
         public virtual string UpdatedBy { get; set; }
@@ -34,6 +39,6 @@ namespace HBD.EntityFramework.DbContexts.DbEntities
 
     public abstract class DbEntity : DbEntity<int>
     {
-        
+
     }
 }
