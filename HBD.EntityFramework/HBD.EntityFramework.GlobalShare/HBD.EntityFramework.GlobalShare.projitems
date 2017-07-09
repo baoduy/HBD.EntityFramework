@@ -14,13 +14,18 @@
     <Compile Include="$(MSBuildThisFileDirectory)Core\IDbUpdating.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Core\IDto.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Aggregates\IAggregate.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DbContexts\DbEntities\EntityStatus.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DbContexts\DbRepositories\DbReadOnlyRepo.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DbContexts\DbEntities\DbEntity.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DbContexts\DbEntities\IDbEntity.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)DbContexts\BasicRepositories\DbBasicRepository.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)DbContexts\BasicRepositories\DbBasicRepositoryFactory.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)DbContexts\DbRepositories\DbEntityUpdating.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)DbContexts\Interfaces\IDbBasicRepository.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)DbContexts\Interfaces\IDbBasicRepositoryFactory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DbContexts\DbRepositories\DbReadOnlyRepoFactory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DbContexts\DbRepositories\DbRepo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DbContexts\DbRepositories\DbRepoFactory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DbContexts\DbRepositories\DbUpdating.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DbContexts\Interfaces\IDbReadOnlyRepoFactory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DbContexts\Interfaces\IDbRepo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DbContexts\Interfaces\IDbRepoFactory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DbContexts\Interfaces\IDbReadOnlyRepo.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DomainEvents\DomainEventsDispatcher.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DomainEvents\DtbDomainEvent.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DomainEvents\EventHandler.cs" />
@@ -36,10 +41,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Exceptions\EntityNotFoundException.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Exceptions\InvaidKeysException.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)OrderDirection.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)DbContexts\Interfaces\IDbRepository.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)DbContexts\Interfaces\IDbRepositoryFactory.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)DbContexts\DbRepositories\DbRepository.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)DbContexts\DbRepositories\DbRepositoryFactory.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)RegexValidationExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\ActionResult.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\IDataService.cs" />
@@ -49,7 +50,5 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Aggregates\" />
-    <Folder Include="$(MSBuildThisFileDirectory)DbContexts\Interfaces\" />
-    <Folder Include="$(MSBuildThisFileDirectory)DbContexts\Validations\" />
   </ItemGroup>
 </Project>

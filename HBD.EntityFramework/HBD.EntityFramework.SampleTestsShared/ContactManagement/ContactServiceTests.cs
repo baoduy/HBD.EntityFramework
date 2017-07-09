@@ -36,7 +36,7 @@ namespace HBD.EntityFramework.TestSample.ContactManagement
                 contact.Id.Should().BeGreaterOrEqualTo(1);
             }
 
-            using (var dbcontext = SampleBootStrapper.GetExport<IDbRepositoryFactory>())
+            using (var dbcontext = SampleBootStrapper.GetExport<IDbRepoFactory>())
             {
                 dbcontext.For<PersonDb>().AsQueryable().Any(p => p.FirstName == "Duy" && p.LastName == "Hoang")
                     .Should().BeTrue();
@@ -80,7 +80,7 @@ namespace HBD.EntityFramework.TestSample.ContactManagement
                 savedContact.Phones.First().Id.Should().BeGreaterOrEqualTo(1);
             }
 
-            using (var fc = SampleBootStrapper.GetExport<IDbRepositoryFactory>())
+            using (var fc = SampleBootStrapper.GetExport<IDbRepoFactory>())
             {
                 var ps = fc.For<PersonDb>().AsQueryable()
                     .Include(a => a.Addresses)
@@ -90,9 +90,17 @@ namespace HBD.EntityFramework.TestSample.ContactManagement
 
                 ps.FirstName.Should().Be("Duy");
                 ps.LastName.Should().Be("Hoang");
+
                 ps.Addresses.First().BlockNo.Should().Be("123");
                 ps.EmailAddresses.First().Email.Should().Be("abc@123.com");
                 ps.PhoneNumbers.First().Name.Should().Be("Mobile");
+
+                ps.Addresses.All(a=>a.CreatedBy.IsNotNullOrEmpty() && a.CreatedTime>=DateTime.MinValue)
+                    .Should().BeTrue();
+                ps.EmailAddresses.All(a => a.CreatedBy.IsNotNullOrEmpty() && a.CreatedTime >= DateTime.MinValue)
+                    .Should().BeTrue();
+                ps.PhoneNumbers.All(a => a.CreatedBy.IsNotNullOrEmpty() && a.CreatedTime >= DateTime.MinValue)
+                    .Should().BeTrue();
             }
         }
 
@@ -112,7 +120,7 @@ namespace HBD.EntityFramework.TestSample.ContactManagement
                 service.Delete(saved).Should().BeTrue();
             }
 
-            using (var fc = SampleBootStrapper.GetExport<IDbRepositoryFactory>())
+            using (var fc = SampleBootStrapper.GetExport<IDbRepoFactory>())
             {
                 fc.For<PersonDb>().AsQueryable().FirstOrDefault(p => p.Id == id).Should().BeNull();
                 fc.For<AddressDb>().AsQueryable().FirstOrDefault(a => a.PersonId == id).Should().BeNull();

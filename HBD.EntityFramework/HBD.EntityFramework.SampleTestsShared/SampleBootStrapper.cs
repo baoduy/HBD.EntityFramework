@@ -34,9 +34,9 @@ namespace HBD.EntityFramework.TestSample
             bt.Run();
 
 #if NETSTANDARD2_0 || NETSTANDARD1_6 || NETCOREAPP1_1 || NETCOREAPP2_0
-            bt.Container.GetExport<IDbRepositoryFactory>().EnsureDbCreated();
+            bt.Container.GetExport<IDbRepoFactory>().EnsureDbCreated();
 #else
-            bt.Container.GetExportedValue<IDbRepositoryFactory>().EnsureDbCreated();
+            bt.Container.GetExportedValue<IDbRepoFactory>().EnsureDbCreated();
 #endif
             return bt;
         });
@@ -57,8 +57,6 @@ namespace HBD.EntityFramework.TestSample
             base.ConfigureAggregateCatalog();
 
             AggregateCatalog.Catalogs.Add(new ApplicationCatalog());
-            //AggregateCatalog.Catalogs.Add(new AssemblyCatalog(typeof(SampleDbContext).Assembly));
-            //AggregateCatalog.Catalogs.Add(new AssemblyCatalog(typeof(SampleBootStrapper).Assembly));
         }
 #endif
 

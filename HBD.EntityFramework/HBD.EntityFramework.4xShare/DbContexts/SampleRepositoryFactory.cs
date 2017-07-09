@@ -6,9 +6,9 @@ using System.Data.Entity;
 namespace HBD.EntityFramework.Sample.DbContexts
 {
     [Export]
-    [Export(typeof(IDbRepositoryFactory))]
+    [Export(typeof(IDbRepoFactory))]
     [PartCreationPolicy(CreationPolicy.NonShared)]
-    public class SampleRepositoryFactory : DbRepositoryFactory
+    public class SampleRepositoryFactory : DbRepoFactory
     {
         [ImportingConstructor]
         public SampleRepositoryFactory(DbContext context) : base(context, false)
@@ -17,7 +17,7 @@ namespace HBD.EntityFramework.Sample.DbContexts
 
         public override bool IsApplyFullValidation => true;
 
-        protected override IDbRepository<TEntity, int, string> CreateRepository<TEntity>() 
+        protected override IDbRepo<TEntity> CreateRepo<TEntity>() 
             => new SampleRepository<TEntity>(this, this.DbContext);
     }
 }

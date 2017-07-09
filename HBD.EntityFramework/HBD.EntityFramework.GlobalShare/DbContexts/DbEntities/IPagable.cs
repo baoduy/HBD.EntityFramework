@@ -14,7 +14,7 @@ namespace HBD.EntityFramework.DbContexts.DbEntities
         int TotalPage { get; }
     }
 
-    public interface IPagable<TEntity> : IPagable
+    public interface IPagable<out TEntity> : IPagable
     {
         IReadOnlyCollection<TEntity> Items { get; }
     }

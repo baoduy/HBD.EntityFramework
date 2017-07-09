@@ -1,12 +1,10 @@
-﻿using HBD.EntityFramework.Exceptions;
-using HBD.Framework.St.Tests.TestObjs;
+﻿using HBD.Framework.St.Tests.TestObjs;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
 
 namespace HBD.Framework.St.Tests.Repositories
 {
@@ -52,21 +50,21 @@ namespace HBD.Framework.St.Tests.Repositories
             using (var factory = new TestFactory(new TestDbContext(options), true))
             {
                 var p = factory.For<Person>();
-                p.Add(new Person { FirstName = "Duy" }, "Duy");
-                Assert.IsTrue(factory.Save() == 1);
+                p.Add(new Person { FirstName = "Duy" });
+                Assert.IsTrue(factory.Save("Duy") == 1);
 
                 var p1 = p.AsQueryable().AsNoTracking().First();
                 Assert.IsTrue(p1.FirstName == "Duy");
                 Assert.IsTrue(p1.Id > 0);
 
                 p1.LastName = "Hoang";
-                p.Update(p1, "Hoang");
-                factory.Save();
+                p.Update(p1);
+                factory.Save("Hoang");
 
                 var p2 = p.AsQueryable().AsNoTracking().First();
                 Assert.IsTrue(p2.LastName == "Hoang");
 
-                Assert.AreEqual(p2.CreatedBy, "Duy");
+                Assert.AreEqual(p2.CreatedBy,"Duy");
                 Assert.IsTrue(p2.CreatedTime > DateTime.MinValue);
             }
         }
@@ -96,15 +94,15 @@ namespace HBD.Framework.St.Tests.Repositories
             {
                 var p = factory.For<Person>();
                 var n = new Person { FirstName = "Duy" };
-                p.Add(n, "Duy");
-                await factory.SaveAsync();
+                p.Add(n);
+                await factory.SaveAsync("Duy");
 
                 var a = p.AsQueryable().First(t => t.Id == n.Id);
                 Assert.IsNull(a.LastName);
 
                 a.LastName = "Hoang";
-                p.Update(a, "Duy");
-                await factory.SaveAsync(true);
+                p.Update(a);
+                await factory.SaveAsync("Duy", true);
 
                 var b = p.AsQueryable().First(t => t.Id == n.Id);
                 Assert.IsTrue(b.LastName == "Hoang");
@@ -125,19 +123,19 @@ namespace HBD.Framework.St.Tests.Repositories
             {
                 var p = factory.For<Person>();
 
-                p.DeleteAll("Duy");
-                await factory.SaveAsync();
+                p.DeleteAll();
+                await factory.SaveAsync("Duy");
 
-                p.Add(new Person { FirstName = "Duy" }, "Duy");
-                await factory.SaveAsync();
+                p.Add(new Person { FirstName = "Duy" });
+                await factory.SaveAsync("Duy");
 
                 var a = p.AsQueryable().AsNoTracking().FirstOrDefault();
                 Assert.IsNotNull(a);
                 Assert.IsNull(a.LastName);
 
                 a.LastName = "Hoang";
-                p.Update(a, "Duy");
-                await factory.SaveAsync(true);
+                p.Update(a);
+                await factory.SaveAsync("Hoang", true);
 
                 var b = p.AsQueryable().FirstOrDefault(t => t.Id == a.Id);
                 Assert.IsNotNull(b);
@@ -155,20 +153,20 @@ namespace HBD.Framework.St.Tests.Repositories
             using (var factory = new TestFactory(new TestDbContext(options), true))
             {
                 var p = factory.For<Person>();
-                p.DeleteAll("Duy");
-                await factory.SaveAsync();
+                p.DeleteAll();
+                await factory.SaveAsync("Duy");
 
                 Assert.IsTrue(p.AsQueryable().Count() == 0);
 
-                p.Add(new Person { FirstName = "Duy" }, "Duy");
-                await factory.SaveAsync();
+                p.Add(new Person { FirstName = "Duy" });
+                await factory.SaveAsync("Duy");
 
                 var a = p.AsQueryable().FirstOrDefault();
                 Assert.IsNotNull(a);
                 Assert.IsNull(a.LastName);
 
-                p.Delete(a, "Duy");
-                await factory.SaveAsync(true);
+                p.Delete(a);
+                await factory.SaveAsync("Duy", true);
 
                 var b = p.AsQueryable().FirstOrDefault(t => t.Id == a.Id);
                 Assert.IsNull(b);
@@ -197,22 +195,22 @@ namespace HBD.Framework.St.Tests.Repositories
             var p2 = factory2.For<Person>();
 
             //Clean Db
-            p1.DeleteAll("Duy");
-            factory1.Save();
+            p1.DeleteAll();
+            factory1.Save("Duy");
 
-            p1.Add(new Person { FirstName = "Duy" }, "Duy");
-            factory1.Save();
+            p1.Add(new Person { FirstName = "Duy" });
+            factory1.Save("Duy");
 
             var ps1 = p1.AsQueryable().AsNoTracking().First();
             var ps2 = p2.AsQueryable().AsNoTracking().First();
 
             ps2.LastName = "Hoang";
-            p2.Update(ps2, "Duy");
-            factory2.Save();
+            p2.Update(ps2);
+            factory2.Save("Duy");
 
             ps1.LastName = "Bao";
-            p1.Update(ps1, "Duy");
-            factory1.Save();
+            p1.Update(ps1);
+            factory1.Save("Duy");
 
             Assert.IsNotNull(ps1.RowVersion);
             Assert.IsNotNull(ps2.RowVersion);
@@ -220,7 +218,7 @@ namespace HBD.Framework.St.Tests.Repositories
         }
 
         [TestMethod]
-        [ExpectedException(typeof(InvaidKeysException))]
+        [ExpectedException(typeof(ArgumentNullException))]
         public void Delete_With_InvalidKeys()
         {
             var options = new DbContextOptionsBuilder<TestDbContext>()
@@ -229,10 +227,11 @@ namespace HBD.Framework.St.Tests.Repositories
 
             var factory = new TestFactory(new TestDbContext(options), true);
             factory.For<Person>().DeleteByKey(0);
+            factory.Save("Duy");
         }
 
         [TestMethod]
-        [ExpectedException(typeof(InvaidKeysException))]
+        [ExpectedException(typeof(ArgumentNullException))]
         public async Task DeleteAsync_With_InvalidKeys()
         {
             var options = new DbContextOptionsBuilder<TestDbContext>()
@@ -241,6 +240,7 @@ namespace HBD.Framework.St.Tests.Repositories
 
             var factory = new TestFactory(new TestDbContext(options), true);
             await factory.For<Person>().DeleteByKeyAsync(0);
+            await factory.SaveAsync("Duy");
         }
     }
 }

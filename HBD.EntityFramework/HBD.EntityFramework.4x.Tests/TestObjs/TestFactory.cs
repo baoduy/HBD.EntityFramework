@@ -4,13 +4,13 @@ using HBD.EntityFramework.DbContexts.Interfaces;
 
 namespace HBD.Framework.St.Tests.TestObjs
 {
-    public class TestFactory : DbRepositoryFactory
+    public class TestFactory : DbRepoFactory
     {
         public TestFactory(DbContext context, bool autoDisposeDbContext = false) : base(context, autoDisposeDbContext)
         {
         }
 
-        protected override IDbRepository<TEntity, int, string> CreateRepository<TEntity>()
+        protected override IDbRepo<TEntity> CreateRepo<TEntity>()
             => new TestRepository<TEntity>(this, this.DbContext);
     }
 }

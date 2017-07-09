@@ -1,5 +1,6 @@
 ﻿using HBD.EntityFramework.DbContexts.DbEntities;
 using HBD.EntityFramework.DbContexts.DbRepositories;
+using HBD.EntityFramework.DbContexts.Interfaces;
 
 #if NETSTANDARD2_0 || NETSTANDARD1_6
 using Microsoft.EntityFrameworkCore;
@@ -9,9 +10,9 @@ using System.Data.Entity;
 
 namespace HBD.EntityFramework.Sample.DbContexts
 {
-    public class SampleRepository<TEntity> : DbRepository<TEntity> where TEntity :class, IDbEntity<int, string>
+    public class SampleRepository<TEntity> : DbRepo<TEntity> where TEntity :class, IDbEntity
     {
-        public SampleRepository(DbRepositoryFactory factory, DbContext context) : base(factory, context)
+        public SampleRepository(IDbRepoFactory factory, DbContext context) : base(factory, context)
         {
         }
     }

@@ -26,14 +26,14 @@ namespace HBD.EntityFramework.TestSample.DbContextTests
         [TestMethod]
         public void Create_NewPerson_Only()
         {
-            using (var fc = SampleBootStrapper.GetExport<IDbRepositoryFactory>())
+            using (var fc = SampleBootStrapper.GetExport<IDbRepoFactory>())
             {
                 fc.EnsureDbCreated();
 
                 var rs = fc.For<PersonDb>();
                 var p1 = new PersonDb { FirstName = "Duy", LastName = "Hoang" };
-                rs.Add(p1, "Duy");
-                fc.Save();
+                rs.Add(p1);
+                fc.Save("Duy");
 
                 rs.AsQueryable().Should().NotBeEmpty();
                 var ps = rs.AsQueryable().First(p => p.Id == p1.Id);
@@ -51,7 +51,7 @@ namespace HBD.EntityFramework.TestSample.DbContextTests
         [TestMethod]
         public void Create_NewPerson_WithAddress()
         {
-            using (var fc = SampleBootStrapper.GetExport<IDbRepositoryFactory>())
+            using (var fc = SampleBootStrapper.GetExport<IDbRepoFactory>())
             {
                 fc.EnsureDbCreated();
 
@@ -63,8 +63,8 @@ namespace HBD.EntityFramework.TestSample.DbContextTests
                 };
                 ps.Addresses.Add(new AddressDb { BlockNo = "2412" });
 
-                rs.Add(ps, "Duy");
-                fc.Save();
+                rs.Add(ps);
+                fc.Save("Duy");
 
                 rs.AsQueryable().Should().NotBeEmpty();
                 var ps1 = rs.AsQueryable().First(p => p.Id == ps.Id);
@@ -80,7 +80,7 @@ namespace HBD.EntityFramework.TestSample.DbContextTests
         public void Verify_LazyLoad_DbContext()
         {
             int id = 0;
-            using (var fc = SampleBootStrapper.GetExport<IDbRepositoryFactory>())
+            using (var fc = SampleBootStrapper.GetExport<IDbRepoFactory>())
             {
                 fc.EnsureDbCreated();
 
@@ -92,8 +92,8 @@ namespace HBD.EntityFramework.TestSample.DbContextTests
                 };
                 ps.Addresses.Add(new AddressDb { BlockNo = "2412" });
 
-                rs.Add(ps, "Duy");
-                fc.Save();
+                rs.Add(ps);
+                fc.Save("Duy");
                 id = ps.Id;
             }
 
@@ -107,7 +107,7 @@ namespace HBD.EntityFramework.TestSample.DbContextTests
         [TestMethod]
         public void Add_Update_Address_Via_Deattached_Person()
         {
-            using (var fc = SampleBootStrapper.GetExport<IDbRepositoryFactory>())
+            using (var fc = SampleBootStrapper.GetExport<IDbRepoFactory>())
             {
                 fc.EnsureDbCreated();
 
@@ -120,15 +120,15 @@ namespace HBD.EntityFramework.TestSample.DbContextTests
 
                 ps.Addresses.Add(new AddressDb { BlockNo = "2412" });
 
-                rs.Add(ps, "Duy");
-                fc.Save();
+                rs.Add(ps);
+                fc.Save("Duy");
 
                 var ps1 = rs.AsQueryable().Include(o => o.Addresses).AsNoTracking().First(p => p.Id == ps.Id);
 
                 ps1.Addresses.First().BlockNo = "111111";
                 ps1.Addresses.Add(new AddressDb { PersonId = ps1.Id, BlockNo = "2222", City = "SG" });
-                rs.Update(ps1, "Duy").Includes(p => p.Addresses);
-                fc.Save();
+                rs.Update(ps1).Includes(p => p.Addresses);
+                fc.Save("Duy");
 
                 var ads = fc.For<AddressDb>().AsQueryable().ToList();
                 ads.Any(a => a.BlockNo == "111111").Should().BeTrue();
@@ -139,7 +139,7 @@ namespace HBD.EntityFramework.TestSample.DbContextTests
         [TestMethod]
         public void Add_Update_Address_Via_NonDeattached_Person()
         {
-            using (var fc = SampleBootStrapper.GetExport<IDbRepositoryFactory>())
+            using (var fc = SampleBootStrapper.GetExport<IDbRepoFactory>())
             {
                 fc.EnsureDbCreated();
 
@@ -152,15 +152,15 @@ namespace HBD.EntityFramework.TestSample.DbContextTests
 
                 ps.Addresses.Add(new AddressDb { BlockNo = "2412" });
 
-                rs.Add(ps, "Duy");
-                fc.Save();
+                rs.Add(ps);
+                fc.Save("Duy");
 
                 var ps1 = rs.AsQueryable().Include(o => o.Addresses).First(p=>p.Id==ps.Id);
 
                 ps1.Addresses.First().BlockNo = "111111";
                 ps1.Addresses.Add(new AddressDb { BlockNo = "2222", City = "SG" });
-                rs.Update(ps1, "Duy").Includes(p => p.Addresses);
-                fc.Save();
+                rs.Update(ps1).Includes(p => p.Addresses);
+                fc.Save("Duy");
 
                 var ads = fc.For<AddressDb>().AsQueryable().ToList();
                 ads.Any(a => a.BlockNo == "111111").Should().BeTrue();
@@ -171,7 +171,7 @@ namespace HBD.EntityFramework.TestSample.DbContextTests
         [TestMethod]
         public void Create_NewPerson_Emails()
         {
-            using (var fc = SampleBootStrapper.GetExport<IDbRepositoryFactory>())
+            using (var fc = SampleBootStrapper.GetExport<IDbRepoFactory>())
             {
                 fc.EnsureDbCreated();
 
@@ -183,8 +183,8 @@ namespace HBD.EntityFramework.TestSample.DbContextTests
                 };
                 ps.EmailAddresses.Add(new EmailAddessDb { Name = "Primary", Email = "abc@drunkcoding.net" });
 
-                rs.Add(ps, "Duy");
-                fc.Save();
+                rs.Add(ps);
+                fc.Save("Duy");
 
                 rs.AsQueryable().Should().NotBeEmpty();
                 var ps1 = rs.AsQueryable().First(p=>p.Id==ps.Id);
@@ -200,7 +200,7 @@ namespace HBD.EntityFramework.TestSample.DbContextTests
         [TestMethod]
         public void Create_NewPerson_Emails_NotNullException()
         {
-            using (var fc = SampleBootStrapper.GetExport<IDbRepositoryFactory>())
+            using (var fc = SampleBootStrapper.GetExport<IDbRepoFactory>())
             {
                 fc.EnsureDbCreated();
 
@@ -212,9 +212,9 @@ namespace HBD.EntityFramework.TestSample.DbContextTests
                 };
                 ps.EmailAddresses.Add(new EmailAddessDb { Name = "Primary" });
 
-                rs.Add(ps, "Duy");
+                rs.Add(ps);
 
-                Action save = () => fc.Save();
+                Action save = () => fc.Save("Duy");
                 save.ShouldThrow<ValidationException>("Email field is required");
             }
         }
@@ -231,7 +231,7 @@ namespace HBD.EntityFramework.TestSample.DbContextTests
         [TestMethod]
         public void Create_NewPerson_Emails_InvalidEmail_Exception()
         {
-            using (var fc = SampleBootStrapper.GetExport<IDbRepositoryFactory>())
+            using (var fc = SampleBootStrapper.GetExport<IDbRepoFactory>())
             {
                 fc.EnsureDbCreated();
 
@@ -243,9 +243,9 @@ namespace HBD.EntityFramework.TestSample.DbContextTests
                 };
                 ps.EmailAddresses.Add(new EmailAddessDb { Name = "Primary", Email = "abc" });
 
-                rs.Add(ps, "Duy");
+                rs.Add(ps);
 
-                Action save = () => fc.Save();
+                Action save = () => fc.Save("Duy");
 
                 save.ShouldThrow<ValidationException>();
             }

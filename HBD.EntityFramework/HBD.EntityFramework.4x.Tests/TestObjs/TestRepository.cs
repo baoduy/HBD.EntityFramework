@@ -4,9 +4,9 @@ using System.Data.Entity;
 
 namespace HBD.Framework.St.Tests.TestObjs
 {
-    public class TestRepository<TEntity> : DbRepository<TEntity> where TEntity :class, IDbEntity<int, string>
+    public class TestRepository<TEntity> : DbRepo<TEntity> where TEntity :class, IDbEntity
     {
-        public TestRepository(DbRepositoryFactory factory, DbContext context) : base(factory, context)
+        public TestRepository(DbRepoFactory factory, DbContext context) : base(factory, context)
         {
         }
     }

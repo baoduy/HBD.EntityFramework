@@ -26,7 +26,7 @@ namespace HBD.EntityFramework.Sample.ContactManagement
         {
         }
 
-        protected IDbRepository<PersonDb, int, string> Db => DbFactory.For<PersonDb>();
+        protected IDbRepo<PersonDb> Db => DbFactory.For<PersonDb>();
 
         protected virtual string CurrentUser => "Duy";
 
@@ -62,7 +62,7 @@ namespace HBD.EntityFramework.Sample.ContactManagement
         {
             this.ValidateKeys(entity.Id);
            Db.DeleteByKey(entity.Id);
-            return DbFactory.Save() > 0;
+            return DbFactory.Save("Duy") > 0;
         }
 
         public override Contact GetById(int key)
@@ -78,7 +78,7 @@ namespace HBD.EntityFramework.Sample.ContactManagement
             var personPage = query.ToPagable(pageIndex, pageSize);
 
             //The Includes and Orderby are not working together on EF-Core. So below is the workaround solution to load the children relationship.
-            //TODO: Find the bester solution in future.
+            //Should: Find the bester solution in future.
             //Loading the relationship info.
             //Please note that calling AsNoTracking() is important for this situation.
 
@@ -109,7 +109,7 @@ namespace HBD.EntityFramework.Sample.ContactManagement
             if (IsNew(entity))
             {
                 type = ActionType.Added;
-               Db.Add(ps, CurrentUser);
+               Db.Add(ps);
             }
             else
             {
@@ -118,13 +118,13 @@ namespace HBD.EntityFramework.Sample.ContactManagement
                 ps.PhoneNumbers.ForEach(a => a.PersonId = ps.Id);
                 ps.EmailAddresses.ForEach(a => a.PersonId = ps.Id);
 
-               Db.Update(ps, CurrentUser)
+               Db.Update(ps)
                       .Includes(p => p.PhoneNumbers)
                       .Includes(p => p.EmailAddresses)
                       .Includes(p => p.Addresses);
             }
 
-            var result = DbFactory.Save();
+            var result = DbFactory.Save("Duy");
             return new ActionResult<Contact>(ps.To<Contact>(), type, result);
         }
 

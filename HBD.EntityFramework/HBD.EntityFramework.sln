@@ -65,6 +65,12 @@ Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "HBD.EntityFramework.SampleS
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HBD.EntityFramework.Net4.7SampleTests", "HBD.EntityFramework.Net4.7SampleTests\HBD.EntityFramework.Net4.7SampleTests.csproj", "{7D75162D-8EA6-4A50-AF27-41E18CAFC132}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SonarQube", "SonarQube", "{B0D3C174-9689-4AF9-843C-A32328599B92}"
+	ProjectSection(SolutionItems) = preProject
+		SonarQube\HBD.EntityFrameworkCSharp.ruleset = SonarQube\HBD.EntityFrameworkCSharp.ruleset
+		SonarQube\SolutionBinding.sqconfig = SonarQube\SolutionBinding.sqconfig
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		HBD.EntityFramework.GlobalShare\HBD.EntityFramework.GlobalShare.projitems*{030bc2c3-f26f-4f0c-86f4-3c178f0bb43b}*SharedItemsImports = 13
