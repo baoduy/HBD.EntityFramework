@@ -18,17 +18,49 @@ namespace HBD.EntityFramework.DbContexts.Interfaces
         void EnsureDbCreated();
 
 #if NETSTANDARD2_0 || NETSTANDARD1_6
+        /// <summary>
+        /// Save the changes to Db.
+        /// </summary>
+        /// <param name="byUserNameOrId">The user name or id. The value type must be according to CreatedBy and UpdatedBy value type.</param>
+        /// <param name="acceptAllChangesOnSuccess"></param>
+        /// <returns>The effected items in Db.</returns>
+        /// <exception cref="System.InvalidCastException">Thrown when the userName is not able to assign to CreatedBy or UpdatedBy</exception>
+        int Save([NotNull]object byUserNameOrId, bool acceptAllChangesOnSuccess = true);
 
-        int Save([NotNull]string userName, bool acceptAllChangesOnSuccess = true);
-
-        Task<int> SaveAsync([NotNull]string userName, bool acceptAllChangesOnSuccess = true);
+        /// <summary>
+        /// Save the changes to Db.
+        /// </summary>
+        /// <param name="byUserNameOrId">The user name or id. The value type must be according to CreatedBy and UpdatedBy value type.</param>
+        /// <param name="acceptAllChangesOnSuccess"></param>
+        /// <returns>The effected items in Db.</returns>
+        /// <exception cref="System.InvalidCastException">Thrown when the userName is not able to assign to CreatedBy or UpdatedBy</exception>
+        Task<int> SaveAsync([NotNull]object byUserNameOrId, bool acceptAllChangesOnSuccess = true);
 
 #else
-        int Save([NotNull]string userName);
+         /// <summary>
+        /// Save the changes to Db.
+        /// </summary>
+        /// <param name="userName">The user name or id. The value type must be according to CreatedBy and UpdatedBy value type.</param>
+        /// <returns>The effected items in Db.</returns>
+        /// <exception cref="System.InvalidCastException">Thrown when the userName is not able to assign to CreatedBy or UpdatedBy</exception>
+        int Save([NotNull]object byUserNameOrId);
 
-        Task<int> SaveAsync([NotNull]string userName);
+         /// <summary>
+        /// Save the changes to Db.
+        /// </summary>
+        /// <param name="byUserNameOrId">The user name or id. The value type must be according to CreatedBy and UpdatedBy value type.</param>
+        /// <returns>The effected items in Db.</returns>
+        /// <exception cref="System.InvalidCastException">Thrown when the userName is not able to assign to CreatedBy or UpdatedBy</exception>
+        Task<int> SaveAsync([NotNull]object byUserNameOrId);
 
-        Task<int> SaveAsync([NotNull]string userName, System.Threading.CancellationToken cancellationToken);
+         /// <summary>
+        /// Save the changes to Db.
+        /// </summary>
+        /// <param name="byUserNameOrId">The user name or id. The value type must be according to CreatedBy and UpdatedBy value type.</param>
+        /// <param name="cancellationToken"></param>
+        /// <returns>The effected items in Db.</returns>
+        /// <exception cref="System.InvalidCastException">Thrown when the userName is not able to assign to CreatedBy or UpdatedBy</exception>
+        Task<int> SaveAsync([NotNull]object byUserNameOrId, System.Threading.CancellationToken cancellationToken);
 #endif
     }
 }

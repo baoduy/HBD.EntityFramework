@@ -23,7 +23,7 @@ namespace HBD.EntityFramework.DbContexts.DbRepositories
     public class DbRepoFactory : DbReadOnlyRepoFactory, IDbRepoFactory
     {
         private readonly object _locker = new object();
-        private string _userActionName;
+        private object _byUserNameOrId;
 
         public DbRepoFactory(DbContext dbContext, bool autoDisposeDbContext = false)
             : base(dbContext, autoDisposeDbContext) { }
@@ -60,7 +60,7 @@ namespace HBD.EntityFramework.DbContexts.DbRepositories
 
                 foreach (var item in entities)
                 {
-                    AppyAuditTrail(item, _userActionName);
+                    AppyAuditTrail(item, _byUserNameOrId);
 
                     if (IsApplyFullValidation)
                         Validate(item);
@@ -73,7 +73,7 @@ namespace HBD.EntityFramework.DbContexts.DbRepositories
             Validator.ValidateObject(entity.Entity);
         }
 
-        protected virtual void AppyAuditTrail(EntityStatus entity, string user)
+        protected virtual void AppyAuditTrail(EntityStatus entity, object byUserNameOrId)
         {
             switch (entity.Entity)
             {
@@ -81,12 +81,12 @@ namespace HBD.EntityFramework.DbContexts.DbRepositories
                     {
                         if (entity.State == EntityState.Added)
                         {
-                            e.CreatedBy = user;
+                            e.CreatedBy = (string)byUserNameOrId;
                             e.CreatedTime = DateTime.Now;
                         }
                         else
                         {
-                            e.UpdatedBy = user;
+                            e.UpdatedBy = (string)byUserNameOrId;
                             e.UpdatedTime = DateTime.Now;
                         }
                     }
@@ -95,16 +95,17 @@ namespace HBD.EntityFramework.DbContexts.DbRepositories
                     {
                         if (entity.State == EntityState.Added)
                         {
-                            e.CreatedBy = user;
+                            e.CreatedBy = (string)byUserNameOrId;
                             e.CreatedTime = DateTime.Now;
                         }
                         else
                         {
-                            e.UpdatedBy = user;
+                            e.UpdatedBy = (string)byUserNameOrId;
                             e.UpdatedTime = DateTime.Now;
                         }
                     }
                     break;
+                default:throw new NotSupportedException($"Not able to apply the AuditTrail for entity type {entity.Entity.GetType().FullName}. Handle this one by overwrite the AppyAuditTrail.");
             }
         }
 
@@ -114,19 +115,19 @@ namespace HBD.EntityFramework.DbContexts.DbRepositories
 
         public void EnsureDbCreated() => DbContext.Database.EnsureCreated();
 
-        public virtual int Save([NotNull]string userName, bool acceptAllChangesOnSuccess = true)
+        public virtual int Save([NotNull]object userName, bool acceptAllChangesOnSuccess = true)
         {
             Guard.ArgumentIsNotNull(userName, nameof(userName));
-            _userActionName = userName;
+            _byUserNameOrId = userName;
 
             EntityConsolidation();
             return DbContext.SaveChanges(acceptAllChangesOnSuccess);
         }
 
-        public virtual Task<int> SaveAsync([NotNull]string userName, bool acceptAllChangesOnSuccess = true)
+        public virtual Task<int> SaveAsync([NotNull]object userName, bool acceptAllChangesOnSuccess = true)
         {
             Guard.ArgumentIsNotNull(userName, nameof(userName));
-            _userActionName = userName;
+            _byUserNameOrId = userName;
 
             EntityConsolidation();
             return DbContext.SaveChangesAsync(acceptAllChangesOnSuccess);
@@ -135,28 +136,28 @@ namespace HBD.EntityFramework.DbContexts.DbRepositories
 #else
         public void EnsureDbCreated() => DbContext.Database.CreateIfNotExists();
 
-        public virtual int Save([NotNull]string userName)
+        public virtual int Save([NotNull]object userName)
         {
             Guard.ArgumentIsNotNull(userName, nameof(userName));
-            _userActionName = userName;
+            _byUserNameOrId = userName;
 
             EntityConsolidation();
             return DbContext.SaveChanges();
         }
 
-        public virtual Task<int> SaveAsync([NotNull]string userName)
+        public virtual Task<int> SaveAsync([NotNull]object userName)
         {
             Guard.ArgumentIsNotNull(userName, nameof(userName));
-            _userActionName = userName;
+            _byUserNameOrId = userName;
 
             EntityConsolidation();
             return DbContext.SaveChangesAsync();
         }
 
-        public virtual Task<int> SaveAsync([NotNull]string userName, System.Threading.CancellationToken cancellationToken)
+        public virtual Task<int> SaveAsync([NotNull]object userName, System.Threading.CancellationToken cancellationToken)
         {
             Guard.ArgumentIsNotNull(userName, nameof(userName));
-            _userActionName = userName;
+            _byUserNameOrId = userName;
             EntityConsolidation();
             return DbContext.SaveChangesAsync(cancellationToken);
         }
