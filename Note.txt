@@ -1,0 +1,19 @@
+public interface IDbIncluding<TEntity> where TEntity : IEntity
+    {
+        IDbIncluding<TEntity> Includes<T>(Func<TEntity, ICollection<T>> selector) where T : class, IEntity;
+        IDbIncluding<TEntity> Include<T>(Func<TEntity, T> selector) where T : class, IEntity;
+    }
+
+     var method = this.GetType().GetMethod(nameof(ApplyCustomDataFor), BindingFlags.NonPublic | BindingFlags.Instance);
+            var type = entity.Entity.GetType();
+
+            var md = method.MakeGenericMethod(new[] { type });
+            md.Invoke(this, new[] { entity });
+
+            
+ private void ApplyCustomDataFor<TEntity>(DbEntityEntry entity) where TEntity : class
+        {
+            var v = Container.GetExportedValueOrDefault<ICustomDataAdapter<TEntity>>();
+            if (v == null) return;
+            v.ApplyFOr(entity.Cast<TEntity>());
+        }

@@ -1,5 +1,6 @@
 ﻿#region using
 
+using HBD.EntityFramework.Core;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -13,13 +14,13 @@ namespace HBD.EntityFramework.DbContexts.DbEntities
     {
         protected DbEntity()
         {
-            CreatedTime = DateTime.Now;
+            CreatedOn = DateTime.Now;
         }
 
         public virtual string CreatedBy { get; set; }
-        public virtual DateTime CreatedTime { get; set; }
+        public virtual DateTime CreatedOn { get; set; }
         public virtual string UpdatedBy { get; set; }
-        public virtual DateTime? UpdatedTime { get; set; }
+        public virtual DateTime? UpdatedOn { get; set; }
 
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public virtual TKey Id { get; set; }

@@ -11,12 +11,12 @@ namespace HBD.EntityFramework.DbContexts.DbEntities
                 .HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
 
             builder.Property(a => a.CreatedBy);
-            builder.Property(a => a.CreatedTime);
+            builder.Property(a => a.CreatedOn);
             builder.Property(a => a.RowVersion)
                 .IsConcurrencyToken(true)
                 .IsRowVersion();
             builder.Property(a => a.UpdatedBy);
-            builder.Property(a => a.UpdatedTime);
+            builder.Property(a => a.UpdatedOn);
         }
     }
 }

@@ -1,6 +1,4 @@
 ﻿using HBD.EntityFramework.Core;
-using HBD.EntityFramework.DbContexts.DbEntities;
-using HBD.EntityFramework.DbContexts.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace HBD.EntityFramework.DbContexts.DbRepositories
 {
-    public sealed class DbUpdating<TEntity> : IDbUpdating<TEntity> where TEntity : IDbEntity
+    public sealed class DbUpdating<TEntity> : IDbing<TEntity> where TEntity : IDbEntity
     {
         private readonly IList<IDbEntity> _includedItems;
 
-        public IDbRepoFactory DbFactory { get; }
+        public IDbRepositoryFactory DbFactory { get; }
         public TEntity Entity { get; }
 
-        internal DbUpdating(IDbRepoFactory dbFactory, TEntity entity)
+        internal DbUpdating(IDbRepositoryFactory dbFactory, TEntity entity)
         {
             DbFactory = dbFactory;
             Entity = entity;
@@ -35,9 +33,9 @@ namespace HBD.EntityFramework.DbContexts.DbRepositories
                 repo.Add(entity);
         }
 
-        public IDbUpdating<TEntity> Include<T>(Func<TEntity, T> selector) where T : class, IDbEntity
+        public IDbing<TEntity> Include<T>(Func<TEntity, T> selector) where T : class, IDbEntity
         {
-            var en = selector.Invoke(this.Entity);
+            var en = selector.Invoke(Entity);
             if (en == null) return this;
 
             AddOrUpdate(en);
@@ -45,9 +43,9 @@ namespace HBD.EntityFramework.DbContexts.DbRepositories
             return this;
         }
 
-        public IDbUpdating<TEntity> Includes<T>(Func<TEntity, ICollection<T>> selector) where T : class, IDbEntity
+        public IDbing<TEntity> Includes<T>(Func<TEntity, ICollection<T>> selector) where T : class, IDbEntity
         {
-            var ens = selector.Invoke(this.Entity);
+            var ens = selector.Invoke(Entity);
             if (ens == null) return this;
 
             foreach (var en in ens)
@@ -70,9 +68,9 @@ namespace HBD.EntityFramework.DbContexts.DbRepositories
                 await repo.AddAsync(entity);
         }
 
-        public async Task<IDbUpdating<TEntity>> IncludeAsync<T>(Func<TEntity, T> selector) where T : class, IDbEntity
+        public async Task<IDbing<TEntity>> IncludeAsync<T>(Func<TEntity, T> selector) where T : class, IDbEntity
         {
-            var en = selector.Invoke(this.Entity);
+            var en = selector.Invoke(Entity);
             if (en == null) return this;
 
             await AddOrUpdateAsync(en);
@@ -80,9 +78,9 @@ namespace HBD.EntityFramework.DbContexts.DbRepositories
             return this;
         }
 
-        public async Task<IDbUpdating<TEntity>> IncludesAsync<T>(Func<TEntity, ICollection<T>> selector) where T : class, IDbEntity
+        public async Task<IDbing<TEntity>> IncludesAsync<T>(Func<TEntity, ICollection<T>> selector) where T : class, IDbEntity
         {
-            var ens = selector.Invoke(this.Entity);
+            var ens = selector.Invoke(Entity);
             if (ens == null) return this;
 
             await Task.WhenAll(ens.Select(AddOrUpdateAsync).ToArray());

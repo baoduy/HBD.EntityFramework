@@ -25,7 +25,7 @@ namespace HBD.EntityFramework.Entities
 
         public abstract bool Equals(IEntity<TKey> other);
 
-        public override int GetHashCode() => this.GetType().FullName.GetHashCode() * 397 ^ this.Id.GetHashCode();
+        public override int GetHashCode() => GetType().FullName.GetHashCode() * 397 ^ Id.GetHashCode();
 
         /// <summary>
         /// Apply the custom validation here.
@@ -46,8 +46,8 @@ namespace HBD.EntityFramework.Entities
 
         public override bool Equals(IEntity<int> other)
         {
-            if (this.GetType() != other.GetType()) return false;
-            return this.Id == other.Id;
+            if (GetType() != other.GetType()) return false;
+            return Id == other.Id;
         }
     }
 
@@ -58,8 +58,8 @@ namespace HBD.EntityFramework.Entities
 
         public override bool Equals(IEntity<string> other)
         {
-            if (this.GetType() != other.GetType()) return false;
-            return this.Id == other.Id;
+            if (GetType() != other.GetType()) return false;
+            return Id == other.Id;
         }
     }
 }

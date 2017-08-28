@@ -1,5 +1,6 @@
 ﻿#region using
 
+using HBD.EntityFramework.Core;
 using System.Collections.Generic;
 
 #endregion using

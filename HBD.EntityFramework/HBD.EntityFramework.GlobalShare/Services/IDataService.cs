@@ -1,5 +1,5 @@
 ﻿using HBD.EntityFramework.Aggregates;
-using HBD.EntityFramework.DbContexts.DbEntities;
+using HBD.EntityFramework.Core;
 using HBD.Framework.Attributes;
 using System.Collections.Generic;
 

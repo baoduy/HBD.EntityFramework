@@ -8,16 +8,16 @@ namespace HBD.EntityFramework.Sample.ContactManagement
         public Address(int id, string blockNo, string street, string city, string postalCode, string country)
             : this(blockNo, street, city, postalCode, country)
         {
-            this.Id = id;
+            Id = id;
         }
 
         public Address(string blockNo, string street, string city, string postalCode, string country)
         {
-            this.BlockNo = blockNo;
-            this.City = city;
-            this.Country = country;
-            this.PostalCode = postalCode;
-            this.Street = street;
+            BlockNo = blockNo;
+            City = city;
+            Country = country;
+            PostalCode = postalCode;
+            Street = street;
         }
 
         public int Id { get; }
@@ -40,11 +40,11 @@ namespace HBD.EntityFramework.Sample.ContactManagement
 
         public override bool Equals(Address other)
         {
-            return this.BlockNo == other.BlockNo
-                && this.City == other.City
-                && this.Country == other.Country
-                && this.PostalCode == other.PostalCode
-                && this.Street == other.Street;
+            return BlockNo == other.BlockNo
+                && City == other.City
+                && Country == other.Country
+                && PostalCode == other.PostalCode
+                && Street == other.Street;
         }
     }
 }

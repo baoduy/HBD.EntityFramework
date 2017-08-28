@@ -19,7 +19,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)ContactManagement\EmailAddress.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ContactManagement\IContactService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ContactManagement\PhoneNumber.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)DbContexts\SampleRepository.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DbEntities\AddressDb.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DbEntities\EmailAddessDb.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DbEntities\PersonDb.cs" />

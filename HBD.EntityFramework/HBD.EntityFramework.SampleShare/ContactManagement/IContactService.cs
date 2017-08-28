@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
-using HBD.EntityFramework.DbContexts.DbEntities;
 using System;
+using HBD.EntityFramework.Core;
 
 namespace HBD.EntityFramework.Sample.ContactManagement
 {
-    public interface IContactService:IDisposable
+    public interface IContactService : IDisposable
     {
         IReadOnlyCollection<Contact> All();
         Contact CreateNew(string firstName, string lastName);

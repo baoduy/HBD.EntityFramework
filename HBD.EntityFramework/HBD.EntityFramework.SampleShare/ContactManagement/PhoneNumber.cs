@@ -9,9 +9,9 @@ namespace HBD.EntityFramework.Sample.ContactManagement
 
         public PhoneNumber(int id, string name, string phoneNo)
         {
-            this.Id = id;
-            this.Name = name;
-            this.PhoneNo = phoneNo;
+            Id = id;
+            Name = name;
+            PhoneNo = phoneNo;
         }
 
         public int Id { get; }

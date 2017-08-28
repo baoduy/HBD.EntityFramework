@@ -20,13 +20,13 @@ namespace HBD.EntityFramework.GlobalShare.Core
             return false;
         }
 
-        public override int GetHashCode() => this.GetType().FullName.GetHashCode() * 397 ^ this.GetValuesHashCode();
+        public override int GetHashCode() => GetType().FullName.GetHashCode() * 397 ^ GetValuesHashCode();
 
         protected virtual int GetValuesHashCode()
         {
             int result = 0;
 
-            foreach (var item in this.GetType().GetProperties().Where(a => a.CanRead))
+            foreach (var item in GetType().GetProperties().Where(a => a.CanRead))
             {
                 var v = item.GetValue(this);
 

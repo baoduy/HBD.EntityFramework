@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using HBD.Framework.Core;
 using HBD.EntityFramework.DbContexts.DbEntities;
+using HBD.EntityFramework.Core;
 
 #if NETSTANDARD2_0 || NETSTANDARD1_6
 

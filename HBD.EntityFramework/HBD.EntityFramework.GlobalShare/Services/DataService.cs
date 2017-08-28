@@ -1,6 +1,5 @@
 ﻿using HBD.EntityFramework.Aggregates;
-using HBD.EntityFramework.DbContexts.DbEntities;
-using HBD.EntityFramework.DbContexts.Interfaces;
+using HBD.EntityFramework.Core;
 using HBD.EntityFramework.Exceptions;
 using HBD.EntityFramework.Services;
 using System;
@@ -10,9 +9,9 @@ namespace HBD.EntityFramework.Repositories
 {
     public abstract class DataService<TEntity, TKey> : IDataService<TEntity, TKey>, IDisposable where TEntity : Aggregate<TKey>
     {
-        protected IDbRepoFactory DbFactory { get; }
+        protected IDbRepositoryFactory DbFactory { get; }
 
-        protected DataService(IDbRepoFactory dbFactory)
+        protected DataService(IDbRepositoryFactory dbFactory)
         {
             DbFactory = dbFactory;
         }

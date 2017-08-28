@@ -13,9 +13,9 @@ namespace HBD.EntityFramework.Sample.ContactManagement
 
         public EmailAddress(int id, string name, string email)
         {
-            this.Id = id;
-            this.Name = name;
-            this.Email = email;
+            Id = id;
+            Name = name;
+            Email = email;
         }
 
         public int Id { get; }
@@ -30,6 +30,6 @@ namespace HBD.EntityFramework.Sample.ContactManagement
         public string Email { get; }
 
         public override bool Equals(EmailAddress other)
-            => this.Email.EqualsIgnoreCase(other.Email);
+            => Email.EqualsIgnoreCase(other.Email);
     }
 }

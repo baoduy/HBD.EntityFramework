@@ -15,7 +15,7 @@ namespace HBD.EntityFramework.Aggregates
 
         protected Aggregate(TKey id)
         {
-            this.Id = id;
+            Id = id;
             _domainEvents = new List<IDomainEvent>();
         }
 

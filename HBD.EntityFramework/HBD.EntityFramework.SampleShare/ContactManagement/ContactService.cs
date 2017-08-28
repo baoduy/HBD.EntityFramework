@@ -1,12 +1,11 @@
-﻿using HBD.EntityFramework.DbContexts.DbEntities;
-using HBD.EntityFramework.DbContexts.Interfaces;
-using HBD.EntityFramework.Repositories;
+﻿using HBD.EntityFramework.Repositories;
 using HBD.EntityFramework.Sample.DbContexts;
 using HBD.EntityFramework.Sample.DbEntities;
 using HBD.EntityFramework.Services;
 using HBD.Framework;
 using System.Collections.Generic;
 using System.Linq;
+using HBD.EntityFramework.Core;
 
 #if NETSTANDARD2_0 || NETSTANDARD1_6
 using System.Composition;
@@ -26,7 +25,7 @@ namespace HBD.EntityFramework.Sample.ContactManagement
         {
         }
 
-        protected IDbRepo<PersonDb> Db => DbFactory.For<PersonDb>();
+        protected IDbRepository<PersonDb> Db => DbFactory.For<PersonDb>();
 
         protected virtual string CurrentUser => "Duy";
 
@@ -60,15 +59,15 @@ namespace HBD.EntityFramework.Sample.ContactManagement
 
         public override bool Delete(Contact entity)
         {
-            this.ValidateKeys(entity.Id);
+            ValidateKeys(entity.Id);
            Db.DeleteByKey(entity.Id);
             return DbFactory.Save("Duy") > 0;
         }
 
         public override Contact GetById(int key)
         {
-            this.ValidateKeys(key);
-            var ps = this.AsQueryable().FirstOrDefault(p => p.Id == key);
+            ValidateKeys(key);
+            var ps = AsQueryable().FirstOrDefault(p => p.Id == key);
             return ps?.To<Contact>();
         }
 

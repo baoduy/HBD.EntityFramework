@@ -7,7 +7,7 @@ using System.Composition;
 namespace HBD.EntityFramework.Sample.DbContexts
 {
     [Export]
-    [Export(typeof(DbContext))]
+    [Export(typeof(IDbContext))]
     public class SampleDbContext : EntityDbContext
     {
         [ImportingConstructor]

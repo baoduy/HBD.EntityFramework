@@ -30,26 +30,26 @@ namespace HBD.EntityFramework.Sample.ContactManagement
 
         public Contact WithAddress(Address address)
         {
-            this.InternalAddresses.Add(address);
+            InternalAddresses.Add(address);
             return this;
         }
 
         public Contact WithPhone(PhoneNumber phone)
         {
-            this.InternalPhones.Add(phone);
+            InternalPhones.Add(phone);
             return this;
         }
 
         public Contact WithEmail(EmailAddress email)
         {
-            this.InternalEmails.Add(email);
+            InternalEmails.Add(email);
             return this;
         }
 
-        public void RemoveAddress(Address address) => this.InternalAddresses.Remove(address);
+        public void RemoveAddress(Address address) => InternalAddresses.Remove(address);
 
-        public void RemovePhone(PhoneNumber phone) => this.InternalPhones.Remove(phone);
+        public void RemovePhone(PhoneNumber phone) => InternalPhones.Remove(phone);
 
-        public void RemoveEmail(EmailAddress email) => this.InternalEmails.Remove(email);
+        public void RemoveEmail(EmailAddress email) => InternalEmails.Remove(email);
     }
 }

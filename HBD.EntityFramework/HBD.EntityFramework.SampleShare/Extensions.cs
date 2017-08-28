@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using HBD.EntityFramework.Core;
 using HBD.EntityFramework.DbContexts.DbEntities;
 using System.Collections;
 using System.Collections.Generic;
