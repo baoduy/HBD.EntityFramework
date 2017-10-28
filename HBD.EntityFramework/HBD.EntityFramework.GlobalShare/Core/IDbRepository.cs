@@ -26,13 +26,15 @@ namespace HBD.EntityFramework.Core
 
         IDbing<TEntity> Delete(TEntity item);
         Task<IDbing<TEntity>> DeleteAsync(TEntity item);
+
         void DeleteByKey(params object[] keyValues);
-
-        void DeleteAll();
-
         Task DeleteByKeyAsync(params object[] keyValues);
 
-        void DeleteWhere(Expression<Func<TEntity, bool>> predicate);
+        int DeleteAll();
+        Task<int> DeleteAllAsync();
+
+        int Delete(Expression<Func<TEntity, bool>> predicate);
+        Task<int> DeleteAsync(Expression<Func<TEntity, bool>> predicate);
         #endregion
     }
 }

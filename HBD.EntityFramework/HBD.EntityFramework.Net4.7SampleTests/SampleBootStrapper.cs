@@ -23,14 +23,20 @@ namespace HBD.EntityFramework.TestSample
 
         public static T GetExportOrDefault<T>() => SampleBootStrapper.Default.Container.GetExportedValueOrDefault<T>();
 
-        internal static SampleBootStrapper Default => HBD.Framework.SingletonManager.GetOrLoad(ref _default, () =>
+        internal static SampleBootStrapper Default
         {
-            var bt = new SampleBootStrapper();
-            bt.Run();
+            get
+            {
+                if (_default != null) return _default;
+                var bt = new SampleBootStrapper();
+                bt.Run();
 
-            bt.Container.GetExportedValue<IDbRepositoryFactory>().EnsureDbCreated();
-            return bt;
-        });
+                bt.Container.GetExportedValue<IDbRepositoryFactory>().EnsureDbCreated();
+                _default = bt;
+
+                return _default;
+            }
+        }
 
         protected override ILogger CreateLogger() => new Log4NetLogger();
 

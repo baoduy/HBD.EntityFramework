@@ -11,7 +11,7 @@ namespace HBD.EntityFramework.Core
     {
         [Timestamp]
         [ConcurrencyCheck]
-        byte[] RowVersion { get; set; }
+        byte[] RowVersion { get;}
 
         object[] GetKeys();
     }

@@ -3,7 +3,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 using HBD.EntityFramework.Core;
-
+using Z.EntityFramework.Plus;
 #if NETSTANDARD2_0 || NETSTANDARD1_6
 using Microsoft.EntityFrameworkCore;
 #else
@@ -93,10 +93,33 @@ namespace HBD.EntityFramework.DbContexts.DbRepositories
             DbSet.Remove(item);
         }
 
-        public virtual void DeleteWhere(Expression<Func<TEntity, bool>> predicate)
-            => DbSet.RemoveRange(DbSet.Where(predicate));
+        /// <summary>
+        /// Delete TEntity by condition directly in Database without loading entities. 
+        /// </summary>
+        /// <param name="predicate"></param>
+        /// <returns></returns>
+        public virtual int Delete(Expression<Func<TEntity, bool>> predicate)
+            => DbSet.Where(predicate).Delete();
 
-        public virtual void DeleteAll() => DbSet.RemoveRange(DbSet);
+        /// <summary>
+        /// Delete TEntity by condition in Database without loading entities. 
+        /// </summary>
+        /// <param name="predicate"></param>
+        /// <returns></returns>
+        public virtual Task<int> DeleteAsync(Expression<Func<TEntity, bool>> predicate)
+            => DbSet.Where(predicate).DeleteAsync();
+
+        /// <summary>
+        /// Delete all in Database without loading entities. 
+        /// </summary>
+        /// <returns></returns>
+        public virtual int DeleteAll() => DbSet.Delete();
+
+        /// <summary>
+        /// Delete all in Database without loading entities. 
+        /// </summary>
+        /// <returns></returns>
+        public virtual Task<int> DeleteAllAsync() => DbSet.DeleteAsync();
 
         #endregion Db Actions
     }

@@ -1,12 +1,13 @@
 ﻿#region using
 
+using System.Collections;
 using System.Collections.Generic;
 
 #endregion using
 
 namespace HBD.EntityFramework.Core
 {
-    public interface IPagable
+    public interface IPagable : IEnumerable
     {
         int PageIndex { get; }
         int PageSize { get; }
@@ -14,7 +15,7 @@ namespace HBD.EntityFramework.Core
         int TotalPage { get; }
     }
 
-    public interface IPagable<out TEntity> : IPagable
+    public interface IPagable<out TEntity> : IPagable, IEnumerable<TEntity>
     {
         IReadOnlyCollection<TEntity> Items { get; }
     }

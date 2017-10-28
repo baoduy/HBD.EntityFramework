@@ -4,17 +4,34 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 using HBD.EntityFramework.Core;
+using Z.EntityFramework.Plus;
 
 #if NETSTANDARD2_0 || NETSTANDARD1_6
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Caching.Memory;
 #else
 using System.Data.Entity;
+using System.Runtime.Caching;
 #endif
 
 namespace HBD.EntityFramework.DbContexts.DbRepositories
 {
     public class DbRoRepository<TEntity> : IDbRoRepository<TEntity> where TEntity : class, IDbEntity
     {
+        /// <summary>
+        /// Apply default caching policy for 4 hours.
+        /// </summary>
+        static DbRoRepository()
+        {
+#if NETSTANDARD2_0 || NETSTANDARD1_6
+            var options = new MemoryCacheEntryOptions() { SlidingExpiration = TimeSpan.FromHours(4) };
+            QueryCacheManager.DefaultMemoryCacheEntryOptions = options;
+#else
+            var options = new CacheItemPolicy() { SlidingExpiration = TimeSpan.FromHours(4) };
+            QueryCacheManager.DefaultCacheItemPolicy = options;
+#endif
+        }
+
         protected IDbContext DbContext { get; }
 
         public DbRoRepository(IDbRoRepositoryFactory dbFactory, IDbContext context)

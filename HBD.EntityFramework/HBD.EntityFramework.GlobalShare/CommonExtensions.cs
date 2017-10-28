@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using HBD.Framework.Core;
 using HBD.EntityFramework.DbContexts.DbEntities;
 using HBD.EntityFramework.Core;
+using Z.EntityFramework.Plus;
 
 #if NETSTANDARD2_0 || NETSTANDARD1_6
 
@@ -26,7 +27,8 @@ namespace HBD.EntityFramework
             pageSize.ShouldGreaterThan(0, nameof(pageSize));
             pageIndex.ShouldGreaterThan(-1, nameof(pageIndex));
 
-            var totalItems = query.Count();
+            //Catch to improve the performance
+            var totalItems = query.DeferredCount().FromCache();
 
             var itemIndex = pageIndex * pageSize;
             if (itemIndex < 0) itemIndex = 0; //Get first Page
@@ -43,7 +45,8 @@ namespace HBD.EntityFramework
             pageSize.ShouldGreaterThan(0, nameof(pageSize));
             pageIndex.ShouldGreaterThan(-1, nameof(pageIndex));
 
-            var totalItems = await query.CountAsync();
+            //Catch to improve the performance
+            var totalItems = await query.DeferredCount().FromCacheAsync();
 
             var itemIndex = pageIndex * pageSize;
             if (itemIndex < 0) itemIndex = 0; //Get first Page
