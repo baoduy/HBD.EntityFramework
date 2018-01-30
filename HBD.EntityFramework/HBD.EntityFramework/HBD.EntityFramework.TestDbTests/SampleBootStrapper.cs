@@ -19,7 +19,7 @@ namespace HBD.EntityFramework.TestDbTests
                 var bt = new SampleBootStrapper();
                 bt.Run();
 
-                bt.Container.GetExportedValue<IDbRepositoryFactory>().EnsureDbCreated();
+                bt.Container.GetExportedValue<IDbFactory>().EnsureDbCreated();
                 _default = bt;
 
                 return _default;

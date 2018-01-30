@@ -22,9 +22,9 @@ namespace HBD.EntityFramework.DbContexts
         EntityEntry<TEntity> Entry<TEntity>([NotNull] TEntity entity) where TEntity : class;
         EntityEntry Entry([NotNull] object entity);
 
-        int SaveChanges(bool acceptAllChangesOnSuccess);
-        Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess);
-        Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess, CancellationToken cancellationToken );
+        //int SaveChanges(bool acceptAllChangesOnSuccess);
+        //Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess);
+        //Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess, CancellationToken cancellationToken);
 #else
         Database Database { get;}
         DbEntityEntry<TEntity> Entry<TEntity>(TEntity entity) where TEntity : class;

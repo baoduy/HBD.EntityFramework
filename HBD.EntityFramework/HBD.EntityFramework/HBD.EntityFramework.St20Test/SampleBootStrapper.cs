@@ -31,7 +31,7 @@ namespace HBD.EntityFramework.TestSample
                 _default = new SampleBootStrapper();
                 _default.Run();
 
-                _default.Container.GetExport<IDbRepositoryFactory>().EnsureDbCreated();
+                _default.Container.GetExport<IDbFactory>().EnsureDbCreated();
                 return _default;
             }
         }

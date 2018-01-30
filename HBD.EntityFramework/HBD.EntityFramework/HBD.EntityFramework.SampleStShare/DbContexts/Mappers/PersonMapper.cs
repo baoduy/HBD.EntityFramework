@@ -16,34 +16,21 @@ namespace HBD.EntityFramework.Sample.DbContexts.Mappers
             builder.Property(m => m.FirstName);
             builder.Property(m => m.LastName);
 
-#if NETSTANDARD2_0
             builder.HasMany(m => m.Addresses)
                 .WithOne(a => a.Person)
                 .HasForeignKey(a => a.PersonId)
-                .OnDelete(DeleteBehavior.Cascade);
+                .OnDelete(DeleteBehavior.Restrict);
 
             builder.HasMany(m => m.PhoneNumbers)
                 .WithOne(a => a.Person)
                 .HasForeignKey(a => a.PersonId)
-                .OnDelete(DeleteBehavior.Cascade);
+                .OnDelete(DeleteBehavior.Restrict);
 
             builder.HasMany(m => m.EmailAddresses)
                 .WithOne(a => a.Person)
                 .HasForeignKey(a => a.PersonId)
-                .OnDelete(DeleteBehavior.Cascade);
-#else
-            builder.HasMany(m => m.Addresses)
-             .WithOne(a => a.Person)
-             .HasForeignKey(a => a.PersonId);
+                .OnDelete(DeleteBehavior.Restrict);
 
-            builder.HasMany(m => m.PhoneNumbers)
-                .WithOne(a => a.Person)
-                .HasForeignKey(a => a.PersonId);
-
-            builder.HasMany(m => m.EmailAddresses)
-                .WithOne(a => a.Person)
-                .HasForeignKey(a => a.PersonId);
-#endif
         }
     }
 }

@@ -104,9 +104,8 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AutoMappers\PersonMapperTests.cs" />
-    <Compile Include="ContactManagement\ContactServiceTests.cs" />
     <Compile Include="DbContextTests\DbContextTests.cs" />
+    <Compile Include="DbDeletingTests.cs" />
     <Compile Include="Others\DbRepositoryFactoryTests.cs" />
     <Compile Include="Others\EntityStatusTests.cs" />
     <Compile Include="Others\PersonDataConventionAdapter.cs" />

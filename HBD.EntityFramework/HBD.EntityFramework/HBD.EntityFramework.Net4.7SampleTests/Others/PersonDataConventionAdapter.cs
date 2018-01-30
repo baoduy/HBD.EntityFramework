@@ -13,7 +13,7 @@ namespace HBD.EntityFramework.Test.Others
     {
         public bool IsCalled { get; private set; }
 
-        public void RaiseEvent(IDbRepositoryFactory factory, EntityStatus<PersonDb> entity)
+        public void RaiseEvent(IDbFactory factory, EntityStatus<PersonDb> entity)
         {
             IsCalled = true;
         }

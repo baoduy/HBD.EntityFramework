@@ -4,10 +4,10 @@ using HBD.EntityFramework.DbContexts;
 
 namespace HBD.EntityFramework.TestDal
 {
-    [Export(typeof(IDbRepositoryFactory))]
+    [Export(typeof(IDbFactory))]
     [Export()]
     [PartCreationPolicy(CreationPolicy.NonShared)]
-    internal class TestDbFactory:HBD.EntityFramework.DbContexts.DbRepositories.DbRepositoryFactory
+    internal class TestDbFactory:HBD.EntityFramework.DbContexts.DbRepositories.DbFactory
     {
         [ImportingConstructor]
         public TestDbFactory(IDbContext dbContext) : base(dbContext, true)

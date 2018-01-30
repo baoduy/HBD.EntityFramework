@@ -6,9 +6,9 @@ using HBD.EntityFramework.DbContexts;
 namespace HBD.EntityFramework.Sample.DbContexts
 {
     [Export]
-    [Export(typeof(IDbRepositoryFactory))]
+    [Export(typeof(IDbFactory))]
     [PartCreationPolicy(CreationPolicy.NonShared)]
-    public class SampleRepositoryFactory : DbRepositoryFactory
+    public class SampleRepositoryFactory : DbFactory
     {
         [ImportingConstructor]
         public SampleRepositoryFactory(IDbContext context) : base(context, false)

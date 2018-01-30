@@ -14,6 +14,6 @@ namespace HBD.EntityFramework.Core
     /// <typeparam name="TEntity"></typeparam>
     public interface IPreSaveEventRegister<TEntity> : IPreSaveEventRegister where TEntity : class
     {
-        void RaiseEvent(IDbRepositoryFactory factory, EntityStatus<TEntity> entity);
+        void RaiseEvent(IDbFactory factory, EntityStatus<TEntity> entity);
     }
 }

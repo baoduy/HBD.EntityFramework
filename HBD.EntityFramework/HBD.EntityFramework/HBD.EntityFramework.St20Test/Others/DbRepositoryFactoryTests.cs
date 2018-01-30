@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Linq;
+using System.Threading.Tasks;
 using FluentAssertions;
 using HBD.EntityFramework.Core;
 using HBD.EntityFramework.Sample.DbEntities;
@@ -33,10 +34,10 @@ namespace HBD.EntityFramework.SampleTests.Others
         [TestMethod]
         public void Container_Should_Not_Be_Null()
         {
-            IDbRepositoryFactory f;
+            IDbFactory f;
 
 #if NETSTANDARD2_0 || NETSTANDARD1_6 || NETCOREAPP1_1 || NETCOREAPP2_0
-            f = SampleBootStrapper.Default.Container.GetExport<IDbRepositoryFactory>();
+            f = SampleBootStrapper.Default.Container.GetExport<IDbFactory>();
 #else
             f = SampleBootStrapper.Default.Container.GetExportedValue<IDbRepositoryFactory>();
 #endif
@@ -51,7 +52,7 @@ namespace HBD.EntityFramework.SampleTests.Others
 
             pre.IsCalled = post.IsCalled = false;
 
-            using (var fc = SampleBootStrapper.GetExportOrDefault<IDbRepositoryFactory>())
+            using (var fc = SampleBootStrapper.GetExportOrDefault<IDbFactory>())
             {
                 fc.For<PersonDb>().Add(new PersonDb{FirstName = "Duy", LastName = "Hoang"});
                 await fc.SaveAsync("Duy");
@@ -69,7 +70,7 @@ namespace HBD.EntityFramework.SampleTests.Others
 
             pre.IsCalled = post.IsCalled = false;
 
-            using (var fc = SampleBootStrapper.GetExportOrDefault<IDbRepositoryFactory>())
+            using (var fc = SampleBootStrapper.GetExportOrDefault<IDbFactory>())
             {
                 fc.For<PersonDb>().Add(new PersonDb { FirstName = "Duy", LastName = "Hoang" });
                 fc.Save("Duy");
@@ -77,6 +78,26 @@ namespace HBD.EntityFramework.SampleTests.Others
 
             pre.IsCalled.Should().BeTrue();
             post.IsCalled.Should().BeTrue();
+        }
+
+        [TestMethod]
+        public void GetChangingEntities()
+        {
+            using (var fc = SampleBootStrapper.GetExportOrDefault<IDbFactory>())
+            {
+                fc.For<PersonDb>().Add(new PersonDb { FirstName = "Duy", LastName = "Hoang" });
+                fc.GetChangingEntities<PersonDb>().Count().Should().Be(1);
+            }
+        }
+
+        [TestMethod]
+        public void Repo_GetChangingEntities()
+        {
+            using (var fc = SampleBootStrapper.GetExportOrDefault<IDbFactory>())
+            {
+                fc.For<PersonDb>().Add(new PersonDb { FirstName = "Duy", LastName = "Hoang" });
+                fc.For<PersonDb>().GetChangingEntities().Count().Should().Be(1);
+            }
         }
     }
 }

@@ -2,7 +2,7 @@
 
 namespace HBD.EntityFramework.Exceptions
 {
-    public class InvaidKeysException : Exception
+    public sealed class InvaidKeysException : Exception
     {
         public InvaidKeysException():base("The key is invalid.")
         {

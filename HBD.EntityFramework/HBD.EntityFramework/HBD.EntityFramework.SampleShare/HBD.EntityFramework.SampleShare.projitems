@@ -9,16 +9,6 @@
     <Import_RootNamespace>HBD.EntityFramework.Sample</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="$(MSBuildThisFileDirectory)AutoProfiles\AddressProfile.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)AutoProfiles\ContactProfile.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)AutoProfiles\EmailProfile.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)AutoProfiles\PhoneProfile.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ContactManagement\Address.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ContactManagement\Contact.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ContactManagement\ContactService.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ContactManagement\EmailAddress.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ContactManagement\IContactService.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ContactManagement\PhoneNumber.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DbEntities\AddressDb.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DbEntities\EmailAddessDb.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DbEntities\PersonDb.cs" />

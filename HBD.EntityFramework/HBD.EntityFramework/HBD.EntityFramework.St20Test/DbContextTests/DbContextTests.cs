@@ -32,7 +32,7 @@ namespace HBD.EntityFramework.TestSample.DbContextTests
         [TestMethod]
         public void Create_NewPerson_Only()
         {
-            using (var fc = SampleBootStrapper.GetExportOrDefault<IDbRepositoryFactory>())
+            using (var fc = SampleBootStrapper.GetExportOrDefault<IDbFactory>())
             {
                 fc.EnsureDbCreated();
 
@@ -57,7 +57,7 @@ namespace HBD.EntityFramework.TestSample.DbContextTests
         [TestMethod]
         public void Create_NewPerson_WithAddress()
         {
-            using (var fc = SampleBootStrapper.GetExportOrDefault<IDbRepositoryFactory>())
+            using (var fc = SampleBootStrapper.GetExportOrDefault<IDbFactory>())
             {
                 fc.EnsureDbCreated();
 
@@ -86,7 +86,7 @@ namespace HBD.EntityFramework.TestSample.DbContextTests
         public void Verify_LazyLoad_DbContext()
         {
             int id = 0;
-            using (var fc = SampleBootStrapper.GetExportOrDefault<IDbRepositoryFactory>())
+            using (var fc = SampleBootStrapper.GetExportOrDefault<IDbFactory>())
             {
                 fc.EnsureDbCreated();
 
@@ -106,7 +106,7 @@ namespace HBD.EntityFramework.TestSample.DbContextTests
                 id = ps.Id;
             }
 
-            using (var fc = SampleBootStrapper.GetExportOrDefault<IDbRepositoryFactory>())
+            using (var fc = SampleBootStrapper.GetExportOrDefault<IDbFactory>())
             {
                 var ps = fc.For<PersonDb>().AsQueryable().First(p => p.Id == id);
                 ps.Addresses.Count.Should().BeGreaterOrEqualTo(1);
@@ -116,7 +116,7 @@ namespace HBD.EntityFramework.TestSample.DbContextTests
         [TestMethod]
         public void Add_Update_Address_Via_Deattached_Person()
         {
-            using (var fc = SampleBootStrapper.GetExportOrDefault<IDbRepositoryFactory>())
+            using (var fc = SampleBootStrapper.GetExportOrDefault<IDbFactory>())
             {
                 fc.EnsureDbCreated();
 
@@ -148,7 +148,7 @@ namespace HBD.EntityFramework.TestSample.DbContextTests
         [TestMethod]
         public void Add_Update_Address_Via_NonDeattached_Person()
         {
-            using (var fc = SampleBootStrapper.GetExportOrDefault<IDbRepositoryFactory>())
+            using (var fc = SampleBootStrapper.GetExportOrDefault<IDbFactory>())
             {
                 fc.EnsureDbCreated();
 
@@ -180,7 +180,7 @@ namespace HBD.EntityFramework.TestSample.DbContextTests
         [TestMethod]
         public void Create_NewPerson_Emails()
         {
-            using (var fc = SampleBootStrapper.GetExportOrDefault<IDbRepositoryFactory>())
+            using (var fc = SampleBootStrapper.GetExportOrDefault<IDbFactory>())
             {
                 fc.EnsureDbCreated();
 
@@ -209,7 +209,7 @@ namespace HBD.EntityFramework.TestSample.DbContextTests
         [TestMethod]
         public void Create_NewPerson_Emails_NotNullException()
         {
-            using (var fc = SampleBootStrapper.GetExportOrDefault<IDbRepositoryFactory>())
+            using (var fc = SampleBootStrapper.GetExportOrDefault<IDbFactory>())
             {
                 fc.EnsureDbCreated();
 
@@ -240,7 +240,7 @@ namespace HBD.EntityFramework.TestSample.DbContextTests
         [TestMethod]
         public void Create_NewPerson_Emails_InvalidEmail_Exception()
         {
-            using (var fc = SampleBootStrapper.GetExportOrDefault<IDbRepositoryFactory>())
+            using (var fc = SampleBootStrapper.GetExportOrDefault<IDbFactory>())
             {
                 fc.EnsureDbCreated();
 

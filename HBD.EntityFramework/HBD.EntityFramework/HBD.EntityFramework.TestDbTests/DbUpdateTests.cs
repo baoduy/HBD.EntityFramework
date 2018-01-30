@@ -14,7 +14,7 @@ namespace HBD.EntityFramework.TestDbTests
         [TestInitialize]
         public void Setup()
         {
-            using (var f = SampleBootStrapper.GetExportOrDefault<IDbRepositoryFactory>())
+            using (var f = SampleBootStrapper.GetExportOrDefault<IDbFactory>())
             {
                 f.EnsureDbCreated();
 
@@ -28,7 +28,7 @@ namespace HBD.EntityFramework.TestDbTests
         [TestMethod]
         public void UpdateChildren()
         {
-            using (var f = SampleBootStrapper.GetExportOrDefault<IDbRepositoryFactory>())
+            using (var f = SampleBootStrapper.GetExportOrDefault<IDbFactory>())
             {
                 var p = new Parent { Name = "Parent 1" };
                 p.ParentChildrens.AddRange(new[]

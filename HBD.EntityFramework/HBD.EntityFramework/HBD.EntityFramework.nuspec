@@ -10,11 +10,21 @@
     <description>
       The library for EntityFramework based on Domain Driven Design pattern allows to maximize the scalability and flexibility for the complex applications.
       Providing the repository and factory design pattern for EntityFramework and EntityFrameworkCore.
+
+      - Why should develop the Repository for EF? http://www.thereformedprogrammer.net/is-the-repository-pattern-useful-with-entity-framework/
     </description>
     <releaseNotes>
       Version ${NugetVersion}
+      - Merge read-only Repository into Repository.
+      - Remove redundant APIs.
+      - Rename DbRepository to DbRepo and DbRepositoryFactory to DbFactory.
+      - Enhance DbUpdating and DbDeleting.
+      - Add GetChangingEntities method allows to get entities from ChangeTracker.
+
+      Version 2.0.2
       - Rename IDataConventionAdapter to IPreSaveEventRegister.
       - Add IPostSaveEventRegister: the functionaries of this one similar to IPreSaveEventRegister but the registers will be called after data saved to db.
+      - Remove redundant parts.
 
       Version 2.0.1
       - Apply EntityFramework Plus to support caching and improve the performance.

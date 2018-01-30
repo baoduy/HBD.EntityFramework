@@ -2,7 +2,7 @@
 
 namespace HBD.EntityFramework.Exceptions
 {
-    public class EntityNotFoundException : Exception
+    public sealed class EntityNotFoundException : Exception
     {
         public EntityNotFoundException()
             :this($"Entity is not found.")
